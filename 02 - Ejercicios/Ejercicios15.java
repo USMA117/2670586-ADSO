@@ -2,7 +2,6 @@
 // unidades: centímetros, pulgadas y pies
 
 import java.util.Scanner;
-<<<<<<< HEAD
 public class Ejercicios15{
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
@@ -27,13 +26,5 @@ public class Ejercicios15{
          System.out.println("pulgadas: "+pulgadas);
          System.out.println("pies: "+pies);
 
-
-
-=======
-public class Ejercicios14{
-    public static void main(String[] args){
-        Scanner teclado = new Scanner(System.in);
-
->>>>>>> c2a00364445b820d6d3090258a27890de3891568
     }
 }

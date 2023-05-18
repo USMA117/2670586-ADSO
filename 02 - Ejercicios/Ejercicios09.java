@@ -5,7 +5,6 @@ public class Ejercicios09{
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
 
-<<<<<<< HEAD
         int num1;
 
         System.out.println("Escribe el numero del que deseas saber si es par o impar");
@@ -19,8 +18,5 @@ public class Ejercicios09{
             System.out.println("El numero "+num1+" es impar");
         }
 
-=======
-        Num_par
->>>>>>> c2a00364445b820d6d3090258a27890de3891568
     }
 }
