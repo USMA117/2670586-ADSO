@@ -26,7 +26,10 @@ public class Ejercicios15{
          System.out.println("pulgadas: "+pulgadas);
          System.out.println("pies: "+pies);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 58eea6e1d52329b63a599c94e065132f5f73ae67
     }
 }
