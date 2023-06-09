@@ -23,7 +23,7 @@ public class Ejercicio7{
 
             if(d1 == d5 && d2 == d4){
                 System.out.println("=> El numero efectivamente es un palindromo.");
-            }else{
+            }else if{
                 System.out.println("=> El numero no es un palindromo.");
 
             }

@@ -24,9 +24,8 @@ public class Ejercicio9{
 
         salario_semanal = tarifa_hora * horas_trabajo; 
         horas_extra = horas_trabajo - 40;
-        pago_extra = (tarifa_hora * 50) / 100;
-        pago_extra = pago_extra * horas_extra;
-        pago_total = salario_semanal + pago_extra;
+        pago_extra = ((tarifa_hora * 50) * horas_extra)/ 100;
+        pago_total = pago_extra + salario_semanal;
 
         if (horas_trabajo > 40){
             System.out.println("Su salario semanal con horas extra es "+pago_total);
