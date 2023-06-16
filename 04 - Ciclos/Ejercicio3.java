@@ -17,7 +17,7 @@ public class Ejercicio3{
         System.out.print("Ingrese la altura: ");
         altura = teclado.nextInt();
 
-        for(int i; 1 <= altura; i++){
+        for(int i = 1; i <= altura; i++){
            for( espaciado = 1; espaciado <= altura - i; espaciado=espaciado+1){
             System.out.print(" ");
         }
@@ -25,7 +25,7 @@ public class Ejercicio3{
             System.out.print("* ");
 
         } 
-        System.out.print(" ");
+        System.out.println(" ");
         }
 
         
