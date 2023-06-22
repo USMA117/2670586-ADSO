@@ -7,9 +7,9 @@ public class Ejercicio3{
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
 
-        int espaciado;
+        int espaciado = 0;
         int altura;
-        int simbolo;
+        int simbolo = 0;
         
 
         System.out.println("Ingresa la altura de la piramide");
@@ -17,7 +17,7 @@ public class Ejercicio3{
         System.out.print("Ingrese la altura: ");
         altura = teclado.nextInt();
 
-        for(int i; 1 <= altura; i++){
+        for(int i = 1; 1 <= altura; i++){
            for( espaciado = 1; espaciado <= altura - i; espaciado=espaciado+1){
             System.out.print(" ");
         }
