@@ -15,16 +15,18 @@ public class Ejercicio1{
 
     System.out.print("Ingrese un numero del 1 al 6: ");
     numero = teclado.nextInt();
+    
 
     for(int i = 1; i <= numero ; i++ ){
 
         int numero_aleatorio =(int) (Math.random() *10);
 
          if(i <= numero && 6 >= numero){
-            System.out.print(numero_aleatorio); 
+            System.out.print(numero_aleatorio);
+            // System.out.print(numero_aleatorio * 2);
         }
 
     }
-    
     }
+    
 }

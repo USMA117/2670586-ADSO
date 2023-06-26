@@ -18,10 +18,10 @@ public class Ejercicio2 {
         Cantidad_Notas = teclado.nextInt();
 
         for(int i = 1; i <= Cantidad_Notas; i=i+1){
-            System.out.print(" => Ingrese nota: "+i+" : ");
+            System.out.print(" => Ingrese nota "+i+" : ");
             double IngreNota = teclado.nextDouble();
 
-            System.out.print(" => Creditos Materia : "+i+" : ");
+            System.out.print(" => Creditos Materia "+i+" : ");
             double Ingreso_Credito = teclado.nextDouble();
 
             Suma_Creditos = Ingreso_Credito+Suma_Creditos;
