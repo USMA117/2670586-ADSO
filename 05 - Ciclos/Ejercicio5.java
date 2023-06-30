@@ -16,16 +16,15 @@ public class Ejercicio5{
     System.out.print("Ingrese la cantidad de sucesion de numeros: ");
     numero = teclado.nextInt();
 
-    for(int i = 1; i <= numero; i++){
-        System.out.print(i);
-       multiplicar *= i ;
+        for(int i = 1; i <= numero; i++){
+            System.out.print(i);
+        multiplicar *= i ;
 
-        if(i != numero){
-            System.out.print(" x ");
+            if(i != numero){
+                System.out.print(" x ");
+            }
+
         }
-
+        System.out.print(" = "+multiplicar);
     }
-    System.out.print(" = "+multiplicar);
-
-    }
-    }
+}
