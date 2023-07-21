@@ -11,27 +11,34 @@ public class Ejercicio6{
         int numero_n = 0;
         int numero_m = 0;
         int multiplicar = 1;
+        int resultado = 0;
 
         System.out.print("Ingrese numero N: ");
         numero_n = teclado.nextInt();
         System.out.print("Ingrese numero M: ");
         numero_m = teclado.nextInt();
+        System.out.print(" ");
 
-        for(int i = 1; i <= numero_n; i++){
 
-            for(numero_n <= numero_m){
+        while(numero_n <= numero_m){
+            if(numero_n <= numero_m){
+                for(int i = 1; i <= numero_n; i++){
+           
+                    System.out.print(i);
+                    multiplicar = multiplicar * i ;
 
-                System.out.print(i);
-                multiplicar *= i ;
+                    if(i != numero_n){
+                        System.out.print(" x ");
+                    }
 
-                if(i != numero_n){
-                    System.out.print(" x ");
+
                 }
+                System.out.println(" = "+(multiplicar));
+                numero_n++;
+                
 
             }
             
-
         }
-        System.out.print(" = "+multiplicar);
     } 
 }

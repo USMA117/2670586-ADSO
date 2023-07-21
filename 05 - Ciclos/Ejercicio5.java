@@ -17,8 +17,9 @@ public class Ejercicio5{
     numero = teclado.nextInt();
 
         for(int i = 1; i <= numero; i++){
+           
             System.out.print(i);
-        multiplicar *= i ;
+            multiplicar *= i ;
 
             if(i != numero){
                 System.out.print(" x ");

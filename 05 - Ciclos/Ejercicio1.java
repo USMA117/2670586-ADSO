@@ -10,6 +10,7 @@ public class Ejercicio1{
         Scanner teclado = new Scanner(System.in);
         
         int numero;
+        int n = 1;
         
 
 
@@ -18,13 +19,19 @@ public class Ejercicio1{
         System.out.print("El numero construido es: ");
         
 
-        for(int i = 1; i <= numero ; i++ ){
+        for(int i = 1; i == n ; i++ ){
+            
+            
 
-            int numero_aleatorio =(int) (Math.random() *10);
+            for(int j = 1; j <= numero; j++){
 
-            if(i <= numero && 6 >= numero){
+                int numero_aleatorio =(int) (Math.random() *10);
+                if(i <= numero && 6 >= numero){
                 System.out.print(numero_aleatorio); 
+                }
+
             }
+
         }
     } 
 }
