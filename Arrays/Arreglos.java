@@ -4,7 +4,7 @@
         // Al final el sistema muestra el contenido del arreglo.
 
 import java.util.Scanner;
-public class Arreglo01{
+public class Arreglos{
     public static void main(String[] argss){
 
         Scanner teclado = new Scanner(System.in);

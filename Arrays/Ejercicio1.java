@@ -8,6 +8,7 @@ public class Ejercicio1{
         Scanner teclado = new Scanner(System.in);
 
         int numero_n = 0;
+        int j = 1;
 
         System.out.print("Ingrese el tamano del arreglo: ");
         numero_n = teclado.nextInt();
@@ -15,14 +16,12 @@ public class Ejercicio1{
 
         for(int i = 1; i <= tamano.length; i++){
 
-            // System.out.print(" "+(i+2));
+            if( j % 2 != 0 ){
+                System.out.print("["+j+"] ");
+                j = j + 2;
             
-
-            if(i % 2 == 0){
-                System.out.print("["+(i+1)+"] ");
-            }
-            if(i % 2 != 0){
-                System.out.print("["+(i)+"] ");
+            }else{
+                System.out.print((j * 2)+1 );
             }
 
         }
