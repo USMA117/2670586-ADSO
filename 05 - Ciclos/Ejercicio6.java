@@ -25,12 +25,11 @@ public class Ejercicio6{
                 for(int i = 1; i <= numero_n; i++){
            
                     System.out.print(i);
-                    multiplicar = multiplicar * i ;
+                    multiplicar = multiplicar * i;
 
                     if(i != numero_n){
                         System.out.print(" x ");
                     }
-
 
                 }
                 System.out.println(" = "+(multiplicar));

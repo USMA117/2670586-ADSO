@@ -7,65 +7,46 @@ public class Ejercicio2{
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
 
-        int numero_n;
-        int divisores = 1;
-        int j =2;
+        int contador_primos = 0;
+        int primo = 2;
+
         
 
         System.out.print("Ingrese el tamano del arreglo: ");
-        numero_n = teclado.nextInt();
+        int numero_n = teclado.nextInt();
 
         int tamano [] = new int [numero_n];
 
-        for(int i = 1; i <= tamano.length; i++){
 
-                if(j % 2 == 0){
-                    // divisores++;
-                    // if(divisores == 2){
-                        System.out.print(j);
-                        j++;
+        while(contador_primos< numero_n){
+            int divisores = 0;
 
-                    // }
+            // Verificar si el numero es primo
+            for(int i = 1; i <= primo; i++ ){
+                if(primo % i == 0){
+                    divisores++;
                 }
 
+            }
 
-            //  if(j % divisores != 0){
-            //     System.out.print(j);
-            //     j++;
-            //     divisores++;
+            //si es primo
+            //se almacena el numero en el arreglo
+            //se aumenta contador primos
 
-            //     if (divisores == 2){
-            //         System.out.print("["+j+"]");
-            //         j++;
-            //     }
-            // }
-            // if(divisores % j == 0){
-            //     divisores++;
-            //     j++;
-            //     System.out.print("[]");
+            if(divisores == 2){
+                tamano[contador_primos] = primo;
+                contador_primos++;
+            }
 
-            // }
-            
-
-            // for(int j = 1; j <= tamano.length; j++){
-            //     if(divisores % j == 0){
-            //         divisores = divisores + 1;
-
-            //     }
-            //     if(divisores == 2){
-            //         System.out.print(j);
-            //     }
-
-            // }
-            // if (divisores == 2){
-            //     System.out.print("El numero es primo.");
-            // }
-            // else {
-            //     System.out.print("El numero no es primo.");
-
-            // }
+            // aumentar primo
+            primo++;
+        }
+        // Imprimir arreglo
+        for(int i = 0;i < tamano.length; i++){
+            System.out.print("["+tamano[i]+"]");
 
         }
+
 
     }
 }
