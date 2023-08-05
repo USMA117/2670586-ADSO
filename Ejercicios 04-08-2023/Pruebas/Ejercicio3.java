@@ -104,21 +104,17 @@ public class Ejercicio3{
                 System.out.print( "Ingrese el dato que desea borrar: " );
                 nombre_eliminar = teclado_eliminar.nextLine();
 
-
-                for(int i = 0;i < arreglo.length-1; i++){
+                int posicion_eliminar = 0;
+                for(int i = 0;i < contador_datos; i++){
                     if (nombre_eliminar.equals( arreglo[i] ) ){
-
-                        if(i > 1){
-                            arreglo[i] = arreglo[i-arreglo.length];
-                        }
-                        else{
-                            if(arreglo[i] == arreglo[0]){
-                                arreglo[i] = arreglo[0];
-                            }else if(arreglo[i] == arreglo[1]){
-                                arreglo[i] = arreglo[1];
+                        posicion_eliminar = i;
+                        for(int j = posicion_eliminar;j < contador_datos; j++){
+                            if(j < contador_datos){
+                                arreglo[j] = arreglo[i+j];
                             }
-                            
+
                         }
+                        
                         
                         memoria++;
                         contador_datos--;
