@@ -16,7 +16,8 @@ public class Ejercicio3{
         String nombre_eliminar;
         int comprobar =0;
 
-        String arreglo[] = new String[10];
+
+        String arreglo[] = new String[memoria];
         
 
         do{
@@ -34,17 +35,29 @@ public class Ejercicio3{
 
             //Ingresar usuario
             if(opcion==1){ 
-                    if(contador_datos <= memoria){
-                        System.out.print("Ingrese su nombre completo: ");
-                        nombre = teclado_texto.nextLine();
-                        for(int i = 0;i < arreglo.length; i++){
-                            if ( nombre.equals( arreglo[i] ) ){
-                                System.out.println(nombre+" esta repetido.");
+
+                    if(contador_datos < memoria){
+                        comprobar =1;
+                        
+                        while(comprobar == 1){
+                            System.out.print("Ingrese su nombre completo: ");
+                            nombre = teclado_texto.nextLine();
+                            for(int i = 0;i<arreglo.length;i++){
+                                if ( nombre.equals( arreglo[i] ) ){
+                                    System.out.println(nombre+" esta repetido.");
+                                    comprobar++;
+                                }
                             }
-                        }
-                        arreglo[contador_datos] = nombre;
-                        contador_datos++;
-                        memoria--;
+                            if(contador_datos<= memoria && comprobar == 1){
+                                arreglo[contador_datos] = nombre;
+                                contador_datos++;
+                                memoria--;
+                                comprobar++;
+                            }
+                            
+                            
+                            
+                         }
                         
                         
                     }else{  
@@ -60,7 +73,7 @@ public class Ejercicio3{
                     System.out.println("["+arreglo[i]+"] ");
                 }
             }
-            //Eidtar usuario
+            //Editar usuario
             if(opcion==3){
                 
                 System.out.print("Ingrese el nombre que dese editar: ");
@@ -87,14 +100,29 @@ public class Ejercicio3{
             }
             // Eliminar nombre
             if(opcion==4){
+
                 System.out.print( "Ingrese el dato que desea borrar: " );
                 nombre_eliminar = teclado_eliminar.nextLine();
-                for(int i = 0;i < arreglo.length; i++){
+
+
+                for(int i = 0;i < arreglo.length-1; i++){
                     if (nombre_eliminar.equals( arreglo[i] ) ){
-                        arreglo[i] = arreglo[arreglo.length-1];
-                        System.out.println(nombre_eliminar+" esta eliminado.");
+
+                        if(i > 1){
+                            arreglo[i] = arreglo[i-arreglo.length];
+                        }
+                        else{
+                            if(arreglo[i] == arreglo[0]){
+                                arreglo[i] = arreglo[0];
+                            }else if(arreglo[i] == arreglo[1]){
+                                arreglo[i] = arreglo[1];
+                            }
+                            
+                        }
+                        
                         memoria++;
                         contador_datos--;
+
                     }
                 }
 
