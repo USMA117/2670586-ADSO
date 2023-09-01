@@ -1,37 +1,54 @@
-import java.util.Scanner;
+import java.util.Date;
 public class CajeroElectronico{
 
     // Atributos
-    int dinero_total;
+    int capacidadTotal;
     int dinero_disponible;
     int cant_10;
     int cant_20;
     int cant_50;
     int cant_100;
     String nombre_banco;
-    // String [] Lista de trasacciones ( fecha-tipot-numtarj-monto-estado );
+    String  listaTransacciones [];
     String usuario_admin;
     String clave_admin;
 
     // Constructores
 
-    public CajeroElectronico(int dinero_total, int dinero_disponible, int cant_10, int cant_20, int cant_50, int cant_100, String nombre_banco, String usuario_admin, String clave_admin){
-        this.dinero_total = dinero_total;
+    public CajeroElectronico(int capacidadTotal, int dinero_disponible, int cant_10, int cant_20, int cant_50, int cant_100, String nombre_banco, String usuario_admin, String clave_admin){
+        this.capacidadTotal = capacidadTotal;
         this.dinero_disponible = dinero_disponible;
         this.cant_10 = cant_10;
         this.cant_20 = cant_20;
         this.cant_50 = cant_50;
         this.cant_100 = cant_100;
         this.nombre_banco = nombre_banco;
+        this.listaTransacciones = listaTransacciones;
+        this.usuario_admin = usuario_admin;
+        this.clave_admin = clave_admin;
+        listaTransacciones = new String[100];
+
+
+    }
+
+    public CajeroElectronico(int capacidadTotal,String nombre_banco, String usuario_admin,String clave_admin){
+        this.capacidadTotal = capacidadTotal;
+        this.nombre_banco = nombre_banco;
         this.usuario_admin = usuario_admin;
         this.clave_admin = clave_admin;
 
+        this.dinero_disponible = 0;
+        this.cant_10 = 0;
+        this.cant_20 = 0;
+        this.cant_50 = 0;
+        this.cant_100 = 0;
+        listaTransacciones = new String[100];
     }
 
     // Getters
 
-    public int getDinero_total(){
-        return dinero_total;
+    public int getcapacidadTotal(){
+        return capacidadTotal;
     }
     public int getDinero_disponible(){
         return dinero_disponible;
@@ -51,6 +68,9 @@ public class CajeroElectronico{
     public String getNombre_banco(){
         return nombre_banco;
     }
+    // public String getListaTransacciones(){
+    //     return listaTransacciones;
+    // }
     public String getUsuario_admin(){
         return usuario_admin;
     }
@@ -60,8 +80,8 @@ public class CajeroElectronico{
 
 
     // Setters
-    public void setDinero_total(int dato){
-        dinero_total = dato;
+    public void setcapacidadTotal(int dato){
+        capacidadTotal = dato;
     }
     public void setDinero_disponible(int dato){
         dinero_disponible = dato;
@@ -81,6 +101,9 @@ public class CajeroElectronico{
     public void setNombre_banco(String dato){
         nombre_banco = dato;
     }
+    // public void setListaTransacciones(String dato){
+    //     getlistaTransacciones = dato;
+    // }
     public void setUsuario_admin(String dato){
         usuario_admin = dato;
     }
@@ -90,18 +113,71 @@ public class CajeroElectronico{
 
 
 
-    public void imprimir(){
-        System.out.println("Nombre del banco: "+nombre_banco);
+    public void imprimirDetalle(){
+        System.out.println("---------------------------------------");
+        System.out.println(" capacidadTotal: "+capacidadTotal);
+        System.out.println(" dinero_disponible: "+dinero_disponible);
+        System.out.println(" cant_10: "+cant_10);
+        System.out.println(" cant_20: "+cant_20);
+        System.out.println(" cant_50: "+cant_50);
+        System.out.println(" cant_100: "+cant_100);
+        System.out.println(" nombre_banco: "+nombre_banco);
+        System.out.println(" usuario_admin: "+usuario_admin);
+        System.out.println(" clave_admin: "+clave_admin);
+        for(int i = 0;i< listaTransacciones.length;i++){
+            if(listaTransacciones[i] != null){
+                System.out.println("    => "+listaTransacciones[i]);
+            }
+        }
+        System.out.println("---------------------------------------");
+        
     }
 
     // Métodos:
     
-    public void abastecerCajero(int dinero){
-        dinero_total += dinero;
-        System.out.println("Dinero total: "+dinero_total);
+    public boolean abastecerCajero(int cant_10, int cant_20, int cant_50, int cant_100){
+        // Calcular total ingresado
+        int total = (cant_10 * 10000) + (cant_20 * 20000) + (cant_50 * 50000) + (cant_100 * 100000);
 
+        // Validar que no exceda el limite
+        if(total <= capacidadTotal){
+            // Si. Almacenar los datos en los atributos.
+            dinero_disponible = total;
+            this.cant_10 = cant_10;
+            this.cant_20 = cant_20;
+            this.cant_50 = cant_50;
+            this.cant_100 = cant_100;
+
+            registrarTransaccion("ABASTECER","0000 0000 0000 0000",total,"OK");
+            return true;
+        }else{
+            // No. Imprimir mensaje y retornar falso
+            registrarTransaccion("ABASTECER","0000 0000 0000 0000",total,"ERROR");
+            return false;
+        }
+    }
+    public void registrarTransaccion(String tipo,String numeroTarjeta,int monto, String estado){
+        Date fecha = new Date();
+        String texto = fecha.toString()+" - "+tipo+" - "+numeroTarjeta+" - "+monto+" - "+estado;
+
+        int indice = -1;
+        for(int i = 0;i < listaTransacciones.length;i++){
+            if(listaTransacciones[i] == null){
+                indice = i;
+                break;
+            }
+        }
+        if(indice != -1){
+            listaTransacciones[indice] = texto;
+        }else{
+            for(int i = 0;i < listaTransacciones.length;i++){
+                listaTransacciones[i] = listaTransacciones[i+1];
+            }
+            listaTransacciones[ listaTransacciones.length-1] = texto;
+        }
     }
 
+    // No hacer 
     public void bloquearCajero(boolean confirmarBloquearCajero){
 
     }
