@@ -111,7 +111,12 @@ public class Ejercicio3{
                         for(int j = posicion_eliminar;j < contador_datos; j++){
                             if(j < contador_datos){
                                 arreglo[j] = arreglo[i+j];
+                            }else{
+                                int k = 0;
+                                arreglo[k] = arreglo[k+1];
                             }
+                                
+                            
 
                         }
                         

@@ -183,7 +183,11 @@ public class CajeroElectronico{
     }
 
     public void verHistorialCajero(){
-
+        for(int i = 0; i < listaTransacciones.length; i++){
+            if(listaTransacciones[i] != null){
+                System.out.println("=> "+listaTransacciones[i]);
+            }
+        }
     }
 
 
@@ -199,11 +203,19 @@ public class CajeroElectronico{
 
     }
 
-    public void consultarSaldoTarjeta(){
+    public void consultarSaldoTarjeta(String nombrePropietario, String numeroTarjeta, String clave, String estado){
+
+        // if(nombrePropietario == nombrePropietario && numeroTarjeta == numeroTarjeta && clave == clave && estado == "ACTIVA"){
+        //     int saldo = dineroTarjeta;
+        //     System.out.print(saldo);
+        // }else if(estado != "ACTIVA"){
+        //     System.out.print("El estado actual de su tarjeta no le permite realizar esta opcion");
+        // }
+        
     }
     
-    public void cambiarClave(){
-
+    public void cambiarClave(String nuevaClave){
+        clave_admin = nuevaClave;
     }
 
 

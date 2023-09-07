@@ -8,10 +8,8 @@ public class Ejercicio10{
 
         int numero_n = 0;
         int numero_aleatorio = 0;
-        int primer_dato = 0;
-        int repetidos = 0;
-        int contador = 1;
-        int j = 1;
+        int numeros_iguales = 0;
+        int posicion = 1;
 
 
         System.out.print("Ingrese un numero entero: ");
@@ -28,30 +26,29 @@ public class Ejercicio10{
         System.out.println("");
 
         // Arreglo sin numeros repetidos
-        primer_dato = numeros[0];
+        int numeros2 [] = new int [numero_n];
+        // posicion = numeros[0];
         System.out.println("Arreglo sin datos repetidos => ");
-        for(int i = 0; i < numeros.length; i++){
-
-            if(numeros[i] == numeros[j]){
-                numeros[i] = 0;
+        for(int i = 0; i < numeros2.length; i++){
+            if(numeros[i] != numeros[posicion]){
+                System.out.println(numeros[i]);
+                posicion++;
+            }else{
+                if(i < numeros.length){
+                   numeros[i] = numeros[posicion+1];
+                    System.out.println(numeros[i+1]); 
+                }
+                
             }
-
-            // System.out.print("["+numeros[i]+"] ");
-            // while(i < j){
-            //     if( numeros[i] != numeros[j]){
-            //         System.out.print("["+numeros[i]+"] ");
-            //         j++;
-
+            
+            
+            // numeros[i] = numeros[i];
+            // for(int j = 1; j < numeros2.length; j++){
+            //     if(numeros2[i] == numeros2[j]){
+            //         System.out.print(numeros2[i]);
             //     }
-
             // }
-            // if(numeros[i] != contador){
-            //     System.out.println("["+numeros[i]+"] ");
-            // }
-            // contador++;
-
-
-
+            
         }
 
     }
