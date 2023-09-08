@@ -182,21 +182,30 @@ public class CajeroElectronico{
 
     }
 
-    public void verHistorialCajero(){
-        for(int i = 0; i < listaTransacciones.length; i++){
-            if(listaTransacciones[i] != null){
+    public void verHistorialCajero(String user, String pass){
+        registrarTransaccion("HISTORIAL","0000 0000 0000 0000",0,"OK");
+        if(user.equals(usuario_admin) && pass.equals(clave_admin) ){
+            for(int i = 0; i < listaTransacciones.length; i++){
+                if(listaTransacciones[i] != null){
                 System.out.println("=> "+listaTransacciones[i]);
+                }
+                
             }
+            
+        }else{
+            System.out.println(" ===> ACCESO DENEGADO <=== ");
+            registrarTransaccion("HISTORIAL","0000 0000 0000 0000",0,"ERROR");
         }
+        
     }
 
 
     public void consignarDineroaTarjeta(){
-
+        
     }
 
     public void retirarDineroTarjeta(){
-
+        
     }
 
     public void verHistorialTarjeta(){
@@ -218,5 +227,44 @@ public class CajeroElectronico{
         clave_admin = nuevaClave;
     }
 
+    public void consignarDineroTarjeta(TarjetaDebito tarjeta, String clave, int cant_10, int cant_20, int cant_50, int cant_100){
+        int monto = (10000 * cant_10) + (20000 * cant_20) + (50000 * cant_50) + (100000 * cant_100);
+            // validar contraseña
+        if(tarjeta.validarClave(clave)){
+            // validar estado de la tarjeta
+            if(tarjeta.validarEstadoActiva("ACTIVO")){
+                // el monto ingresado sea mayor a 0
+                if(monto > 0){
+                    // validar que con el dinero ingresado no supere limite del cajero
+                    if(dinero_disponible + monto <= capacidadTotal){
+                        // aumentar saldo tarjeta, aumentar saldo cajero y cantidad de billetes
+                        tarjeta.aumentarSaldo(monto, clave);
+                        dinero_disponible += monto;
+                        this.cant_10 += cant_10;
+                        this.cant_20 += cant_20;
+                        this.cant_50 += cant_50;
+                        this.cant_100 += cant_100;
+                        
+                        //Registrar transaccion
+                        System.out.print(" ===> REALIZADO - CONSIGNAR DINERO <=== ");
+                        registrarTransaccion("CONSIGNACION",tarjeta.getNumeroTarjeta(),monto,"OK");
+                    }else{
+                        System.out.print(" ===> ERROR MONTO SUPERIOR - CONSIGNAR DINERO <=== ");
+                        registrarTransaccion("CONSIGNACION",tarjeta.getNumeroTarjeta(),monto,"ERROR MONTO SUPERIOR");
+                    }
+                }else{
+                    System.out.print(" ===> ERROR MONTO INFERIOR - CONSIGNAR DINERO <=== ");
+                    registrarTransaccion("CONSIGNACION",tarjeta.getNumeroTarjeta(),monto,"ERROR MONTO INFERIOR");
+                }
+            }else{
+                System.out.print(" ===> ERROR ESTADO - CONSIGNAR DINERO <=== ");
+                registrarTransaccion("CONSIGNACION",tarjeta.getNumeroTarjeta(),monto,"ERROR ESTADO");
+            }
+        }else{
+            System.out.print(" ===> ERROR PASSWORD - CONSIGNAR DINERO <=== ");
+            registrarTransaccion("CONSIGNACION",tarjeta.getNumeroTarjeta(),monto,"ERROR PASSWORD");
+        }
+        
+    }
 
 }
