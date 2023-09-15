@@ -70,6 +70,8 @@ public class TarjetaDebito{
     }
     public void imprimir(){
         System.out.println("Nombre del banco: "+nombreBanco);
+        System.out.println("Dinero de la tarjeta: "+dineroTarjeta);
+        
     }
 
     // -> METODOS
@@ -171,13 +173,16 @@ public class TarjetaDebito{
     //     dineroTarjeta += cantidad;
     //     System.out.print("Saldo: "+dineroTarjeta);
     // }
-    public int getSaldo(String pass){
+    public void getSaldo(String pass){
         if(pass.equals(clave)){
             registrarTransaccion("CONSULTASALDO",0,"OK");
-            return dineroTarjeta;
+            System.out.println("");
+            System.out.println("==> SALDO DE LA TARJETA <=== ");
+            System.out.println("Dinero de la tarjeta: "+dineroTarjeta);
+            System.out.println("=============================== ");
         }else{
             registrarTransaccion("CONSULTASALDO",0,"ERROR");
-            return -1;
+            System.out.println("ERROR");
         }
     }
 
@@ -199,6 +204,16 @@ public class TarjetaDebito{
             return true;
         }else{
             return false;
+        }
+    }
+
+    public void registrarNuevaClave(String pass, String claveNueva, String estadoTarjeta){
+        if(pass.equals(clave) && estadoTarjeta.equals(estado)){
+            registrarTransaccion("CAMBIARCONTRASENA", 0, "OK");
+            clave = claveNueva;
+            System.out.println("Nueva contrasena:"+clave);
+        }else{
+            registrarTransaccion("CAMBIARCONTRASENA", 0, "ERROR");
         }
     }
 }

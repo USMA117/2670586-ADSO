@@ -199,17 +199,8 @@ public class CajeroElectronico{
         
     }
 
-
-    public void consignarDineroaTarjeta(){
-        
-    }
-
     public void retirarDineroTarjeta(){
         
-    }
-
-    public void verHistorialTarjeta(){
-
     }
 
     public void consultarSaldoTarjeta(String nombrePropietario, String numeroTarjeta, String clave, String estado){
@@ -267,4 +258,84 @@ public class CajeroElectronico{
         
     }
 
+    public void retirarDineroTarjeta(TarjetaDebito tarjeta, String clave, int cant_10, int cant_20, int cant_50, int cant_100){
+        int monto = (10000 * cant_10) + (20000 * cant_20) + (50000 * cant_50) + (100000 * cant_100);
+            // validar contraseña
+        if(tarjeta.validarClave(clave)){
+            // validar estado de la tarjeta
+            if(tarjeta.validarEstadoActiva("ACTIVO")){
+                // el monto ingresado sea mayor a 0
+                if(monto > 0){
+                    // validar que con el dinero ingresado no supere limite del cajero
+                    if(dinero_disponible + monto <= capacidadTotal){
+                        // aumentar saldo tarjeta, aumentar saldo cajero y cantidad de billetes
+                        tarjeta.disminuirSaldo(monto, clave);
+                        dinero_disponible -= monto;
+                        this.cant_10 -= cant_10;
+                        this.cant_20 -= cant_20;
+                        this.cant_50 -= cant_50;
+                        this.cant_100 -= cant_100;
+                        
+                        //Registrar transaccion
+                        System.out.println(" ===> REALIZADO - RETIRAR DINERO <=== ");
+                        registrarTransaccion("RETIRO",tarjeta.getNumeroTarjeta(),monto,"OK");
+                    }else{
+                        System.out.print(" ===> ERROR MONTO SUPERIOR - RETIRAR DINERO <=== ");
+                        registrarTransaccion("RETIRO",tarjeta.getNumeroTarjeta(),monto,"ERROR MONTO SUPERIOR");
+                    }
+                }else{
+                    System.out.print(" ===> ERROR MONTO INFERIOR - RETIRAR DINERO <=== ");
+                    registrarTransaccion("RETIRO",tarjeta.getNumeroTarjeta(),monto,"ERROR MONTO INFERIOR");
+                }
+            }else{
+                System.out.print(" ===> ERROR ESTADO - RETIRAR DINERO <=== ");
+                registrarTransaccion("RETIRO",tarjeta.getNumeroTarjeta(),monto,"ERROR ESTADO");
+            }
+        }else{
+            System.out.print(" ===> ERROR PASSWORD - RETIRAR DINERO <=== ");
+            registrarTransaccion("RETIRO",tarjeta.getNumeroTarjeta(),monto,"ERROR PASSWORD");
+        }
+        
+    }
+
+    public void VerHistorialTarjeta(TarjetaDebito tarjeta, String pass){
+        if(tarjeta.validarClave(pass)){
+            tarjeta.verHistorial(pass);
+            System.out.println(" ===> REALIZADO - VER HISTORIAL TARJETA <=== ");
+        }else{
+            System.out.print(" ===> ERROR PASSWORD - VER HISTORIAL <=== ");
+        }
+
+    }
+
+    public void consultarSaldoTarjeta(TarjetaDebito tarjeta, String pass){
+        if(tarjeta.validarClave(pass)){
+            tarjeta.getSaldo(pass);
+            System.out.println(" ===> REALIZADO - CONSULTAR SALDO TARJETA <=== ");
+        }else{
+            System.out.println(" ===> ERROR PASSWORD - CONSULTAR SALDO TARJETA <=== ");
+        }
+
+    }
+
+    // public void consultarSaldoTarjeta(TarjetaDebito tarjeta, String pass){
+    //     if(tarjeta.validarClave(pass)){
+    //         System.out.println("=============================");
+    //         System.out.println("------ SALDO DISPONIBLE ------");
+    //         System.out.println("------"+tarjeta.getDineroTarjeta()+"------");
+    //         System.out.println("=============================");
+    //     }else{
+    //         System.out.println(" ===> ERROR PASSWORD - CONSULTAR SALDO TARJETA <=== ");
+    //     }
+
+    // }
+
+    public void cambiarClave(TarjetaDebito tarjeta, String claveActual, String claveNueva, String estado){
+        if(tarjeta.validarClave(claveActual) && tarjeta.validarEstadoActiva("ACTIVO")){
+            tarjeta.registrarNuevaClave(claveActual, claveNueva, estado);
+            System.out.println(" ===> REALIZADO - ACTUALIZACION DE CONTRASENA <=== ");
+        }else{
+            System.out.println(" ===> ERROR PASSWORD - ACTUALIZACION DE CONTRASENA <=== ");
+        }
+    }
 }

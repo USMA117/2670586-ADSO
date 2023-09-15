@@ -24,9 +24,16 @@ public class Principal{
         TarjetaDebito tarjeta_5 = new TarjetaDebito ("Fernando Ramirez", "327478595", "BBVA", 0, 0, "5668");
 
 
-        cajero_2.consignarDineroTarjeta(tarjeta_1, "1234", 0, 0, 0, 10);
+        // cajero_2.consignarDineroTarjeta(tarjeta_1, "1234", 0, 0, 0, 10);
+        // cajero_2.retirarDineroTarjeta(tarjeta_1, "1234", 0, 0, 0, 10);
 
         cajero_2.imprimirDetalle();
+
+        cajero_2.VerHistorialTarjeta(tarjeta_1, "1234");
+
+        cajero_2.consultarSaldoTarjeta(tarjeta_1, "1234");
+
+        cajero_2.cambiarClave(tarjeta_1, "1234","4321","ACTIVO");
         // tarjeta_1.consultarSaldoTarjeta("Jhoan Usma", "123456789", "1234", "ACTIVA");
         // tarjeta_1.validarClave("1234");
         // tarjeta_1.aumentarSaldo();
