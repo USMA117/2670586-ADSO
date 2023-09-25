@@ -4,16 +4,27 @@
 public class Ejercicio07 {
     public static void main(String[] args){
         int lista [] = new int[5];
-        lista = llenarArreglo(arreglo);
-        System.out.println("El numero mayor es: "+llenarArreglo(lista));
+        imprimirArreglo(lista);
+        lista = llenarArreglo(lista);
+        imprimirArreglo(lista);
     }
 
-    public int[] llenarArreglo(int []arreglo){
-        int aleatorio = (int)(Math.random()*100);
+    public static int[] llenarArreglo(int [] arreglo){
 
         for(int i = 0; i < arreglo.length; i++){
+            int aleatorio = (int)(Math.random()*100);
             arreglo[i] = aleatorio;
         }
         return arreglo;
     }
+
+    public static void imprimirArreglo( int [] arreglo){
+        for(int i = 0; i < arreglo.length; i++ ){
+            System.out.print(" ["+arreglo[i]+"]");
+
+        }
+        System.out.println("");
+    }
+
+
 }
