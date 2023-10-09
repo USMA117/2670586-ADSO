@@ -6,11 +6,14 @@ public class Principal{
         perro_01.setNombre("Toby");
         perro_01.setPropietario("Miguel Alzate");
         
-        // perro_01.imprimirDetalle();
-        // perro_02.imprimirDetalle();
 
-        perro_01.comer(800);
-
+        // perro_01.comer(800);
+        // perro_01.caminar(30);
+        // perro_01.ladrar(9);
+        // perro_01.morder(10);
+        // perro_01.dormir(60);
+        // perro_01.hacerPopis(500);
+        perro_01.jugar(20);
         perro_01.imprimirDetalle();
 
 

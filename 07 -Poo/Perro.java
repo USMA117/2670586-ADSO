@@ -22,7 +22,7 @@ public class Perro {
         System.out.println("+--------------------------------+");
         System.out.println("| nombre: "+nombre);
         System.out.println("| propietario: "+propietario);
-        System.out.println("| edad: "+edad+" meses ("+((double) edad/12)+")");
+        System.out.println("| edad: "+edad+" meses ("+((double) edad/12)+") anios");
         System.out.println("| raza: "+raza);
         System.out.println("| peso: "+peso+" kg");
         System.out.println("| energia: "+energia);
@@ -87,10 +87,39 @@ public class Perro {
     
     // Metodos  
     // - imprimirDetalle(...)
+
     // - caminar(...)
+    public void caminar(int minutos){
+        peso -= ((double)minutos/1000);
+        energia -= minutos/15; 
+    }
+
     // - ladrar(...)
+    public void ladrar(int cant_ladridos){
+        int ladridos = 0;
+        for(int i =3; i <= cant_ladridos; i+=3){
+            if(i % 3 == 0){
+                ladridos++;
+            }
+        }
+        energia -= ladridos;
+    }
+
     // - morder(...)
+    public void morder(int cant_mordidas){
+        int mordidas = 0;
+        for(int i =2; i <= cant_mordidas; i+=2){
+            if(i % 2 == 0){
+                mordidas++;
+            }
+        }
+        energia -= mordidas;
+    }
+
     // - dormir(...)
+    public void dormir(int minutos){
+        energia += minutos/15;
+    }
 
 
 
@@ -106,7 +135,16 @@ public class Perro {
 
 
     // - hacerPopis(...)
+    public void hacerPopis(int gramos){
+        peso -= (double) gramos/1000;
+        energia += (gramos /100)*2;
+    }
+
     // - jugar(...)
+    public void jugar(int minutos){
+        energia -= minutos/10;
+    }
+
 
 
 
