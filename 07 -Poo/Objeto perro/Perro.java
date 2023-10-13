@@ -145,10 +145,4 @@ public class Perro {
         energia -= minutos/10;
     }
 
-
-
-
-
-
-
 }
