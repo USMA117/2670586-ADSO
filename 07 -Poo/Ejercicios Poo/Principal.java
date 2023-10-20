@@ -13,6 +13,7 @@ public class Principal{
         Curso listaCursos [] = new Curso[espacio];
         listaCursos[0] = new Curso (12345, "PHP", "Programacion", 50 );
         listaCursos[1] = new Curso (123, "JAVA", "Programacion", 20 );
+        listaCursos[2] = new Curso (1256, "JS", "Programacion", 30 );
 
         for(int i = 0; i < listaCursos.length; i++){
             if(listaCursos[i] != null){
@@ -148,19 +149,21 @@ public class Principal{
                 System.out.println("---------------------------");
 
             }else if(opcion == 6){
+                int posicion_eliminar =0;
                 System.out.print("Ingrese el nombre del curso -> ");
                 String nombreBusqueda = tecladoTexto.nextLine();
-                for(int i = 0;i < listaCursos.length-1;i++){
+                for(int i = 0;i < listaCursos.length;i++){
                     if(listaCursos[i] != null){
                         if(nombreBusqueda.equals(listaCursos[i].getNombreCurso())){
-                            System.out.println("---------------------------");
-                            System.out.println("|      CURSO ELIMINADO     |");
-                            System.out.println("---------------------------");
-                            int posicion_eliminar = -1;
-                            for(int j = i; j < espaciosLlenos-1; j++ ){
-                                
+                            
+                            posicion_eliminar = i;
+                            for(int j = posicion_eliminar; j < listaCursos.length-1; j++ ){
                                 listaCursos[j] = listaCursos[j+1];
                             }
+
+                            System.out.println("---------------------------");
+                            System.out.println("|      CURSO ELIMINADO    |");
+                            System.out.println("---------------------------");
                         }
                         // else{
                         //     System.out.println("Este curso no esta disponible aun...");
@@ -169,6 +172,7 @@ public class Principal{
                         
                     }
                 }
+                
                 espacio++;
             }
         }while(opcion != 7);

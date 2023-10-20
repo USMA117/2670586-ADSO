@@ -63,8 +63,9 @@ public class Curso{
                     }
                 }
             }
-            System.out.println(" ) ");  
+            System.out.println(" )");  
         }
+        System.out.println("");
     }
     
     public void editarInformacionCurso(String nombre, String area, int duracion){
