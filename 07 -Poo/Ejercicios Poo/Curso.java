@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Curso{
-    Scanner teclado = new Scanner(System.in);
+    Scanner tecladoTexto = new Scanner(System.in);
+    Scanner tecladoNumeros = new Scanner(System.in);
     private int codigo = 0;
     private String nombreCurso = "";
     private String area = "";
@@ -22,7 +23,7 @@ public class Curso{
     public int getCodigo(){
         return codigo;
     }
-    public String GetNombreCurso(){
+    public String getNombreCurso(){
         return nombreCurso;
     }
     public String getArea(){
@@ -51,18 +52,43 @@ public class Curso{
     // Metodos
 
     public void imprimirDetalle(){
-        System.out.println("---------------------------");
-        System.out.println("Codigo: "+codigo);
-        System.out.println("Nombre: "+nombreCurso);
-        System.out.println("Area: "+area);
-        System.out.println("Duracion: "+duracion+" horas.");
-        System.out.println("---------------------------");
+
+        System.out.print(codigo+" - "+nombreCurso+" - "+area+" - "+duracion+" hrs ");
+        if(temas[0] != null){
+            System.out.print(" - ( ");   
+            for (int i = 0; i < temas.length; i++) {
+                if(temas[i] != null){
+                    if(i  < temas.length){
+                        System.out.print(temas[i]+" ");   
+                    }
+                }
+            }
+            System.out.println(" ) ");  
+        }
     }
     
-    public void crearCurso(){
-        System.out.print("Ingrese el nombre del curso: ");
+    public void editarInformacionCurso(String nombre, String area, int duracion){
+        
+        this.nombreCurso = nombre;
+        this.area = area;
+        this.duracion = duracion;
 
+        System.out.println("-------------------------------");
+        System.out.println("|   INFORMACION ACTUALIZADA   |");
+        System.out.println("-------------------------------");
 
+    }
+
+    public void agregarTema(String tema){
+        for (int i = 0; i < temas.length; i++) {
+            if(temas[i] == null){
+                temas[i] = tema;
+                break;
+            }
+        }
+        System.out.println("-------------------------------");
+        System.out.println("| TEMA AGREGADO EXITOSAMENTE  |");
+        System.out.println("-------------------------------");
     }
 
 
