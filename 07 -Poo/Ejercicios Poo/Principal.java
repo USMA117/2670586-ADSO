@@ -3,7 +3,7 @@ public class Principal{
     public static void main(String[] args){
         Scanner tecladoTexto = new Scanner(System.in);
         Scanner tecladoNumeros = new Scanner(System.in);
-        Curso curso_01 = new Curso (12345, "PHP", "Programacion", 50 );
+        // Curso curso_01 = new Curso (12345, "PHP", "Programacion", 50 );
 
         // curso_01.imprimirDetalle();
 
@@ -11,9 +11,9 @@ public class Principal{
         int espaciosLlenos = 0;
         int espacio = 100;
         Curso listaCursos [] = new Curso[espacio];
-        listaCursos[0] = new Curso (12345, "PHP", "Programacion", 50 );
-        listaCursos[1] = new Curso (123, "JAVA", "Programacion", 20 );
-        listaCursos[2] = new Curso (1256, "JS", "Programacion", 30 );
+        // listaCursos[0] = new Curso (12345, "PHP", "Programacion", 50 );
+        // listaCursos[1] = new Curso (123, "JAVA", "Programacion", 20 );
+        // listaCursos[2] = new Curso (1256, "JS", "Programacion", 30 );
 
         for(int i = 0; i < listaCursos.length; i++){
             if(listaCursos[i] != null){
@@ -53,20 +53,26 @@ public class Principal{
                 int duracion = tecladoNumeros.nextInt();
                 System.out.println("+------------------------------------------+");
 
-                for(int i = 0; i < listaCursos.length; i++){
-                    if(codigo == listaCursos[i].getCodigo()){
+                boolean cursoExistente = false;
+
+                for (int i = 0; i < listaCursos.length; i++) {
+                    if (listaCursos[i] != null && codigo == listaCursos[i].getCodigo()) {
                         System.out.println("Este Curso ya existe");
-                        espacio++;
+                        cursoExistente = true;
                         break;
                     }
-                    if(listaCursos[i] == null){
-                        listaCursos[i] = new Curso(codigo, nombreCurso, area, duracion);
-                        
-                    }
-                    
                 }
 
-                espacio--;
+                if (cursoExistente == false) {
+                    for (int i = 0; i < listaCursos.length; i++) {
+                        if (listaCursos[i] == null) {
+                            listaCursos[i] = new Curso(codigo, nombreCurso, area, duracion);
+                            espacio--;
+                            break;
+                        }
+                    }
+                }
+
                 // listaCursos[0].imprimirDetalle();
 
             }else if(opcion == 2){
@@ -77,7 +83,7 @@ public class Principal{
                     if(listaCursos[i] != null){
                         // System.out.println((i+1)+". "+listaCursos[i].getNombreCurso());
                         System.out.print((i+1)+". ");
-                        listaCursos[i].imprimirDetalle();;
+                        listaCursos[i].imprimirDetalle();
                     }
                 }
                 System.out.println("\n---------------------------");
