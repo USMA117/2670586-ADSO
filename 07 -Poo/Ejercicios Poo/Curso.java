@@ -85,6 +85,8 @@ public class Curso{
             if(temas[i] == null){
                 temas[i] = tema;
                 break;
+            }else{
+                System.out.println("|   NO SE PUEDEN AGREGARTEMAS    |");
             }
         }
         System.out.println("-------------------------------");

@@ -51,6 +51,9 @@ public class Principal{
                 String area = tecladoTexto.nextLine();
                 System.out.print("Ingrese duracion del curso -> ");
                 int duracion = tecladoNumeros.nextInt();
+                System.out.print("Ingrese cantidad de temas -> ");
+                int cant_temas = tecladoNumeros.nextInt();
+                
                 System.out.println("+------------------------------------------+");
 
                 boolean cursoExistente = false;
@@ -67,6 +70,15 @@ public class Principal{
                     for (int i = 0; i < listaCursos.length; i++) {
                         if (listaCursos[i] == null) {
                             listaCursos[i] = new Curso(codigo, nombreCurso, area, duracion);
+                            for(int j=0;j< cant_temas;j++){
+                                if(cant_temas>=1){
+                                    System.out.print("Ingrese tema del curso -> ");
+                                    
+                                    String tema = tecladoTexto.nextLine();
+                                    listaCursos[i].agregarTema(tema);
+                                }
+                                
+                            }
                             espacio--;
                             break;
                         }
