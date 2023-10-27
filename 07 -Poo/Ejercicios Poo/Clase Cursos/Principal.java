@@ -122,6 +122,7 @@ public class Principal{
             }else if(opcion == 4){
                 System.out.print("Ingrese el nombre del curso -> ");
                 String nombreBusqueda = tecladoTexto.nextLine();
+                boolean nombre_existente = false;
                 for(int i = 0;i < listaCursos.length;i++){
                     if(listaCursos[i] != null){
                         if(nombreBusqueda.equals(listaCursos[i].getNombreCurso())){
@@ -135,13 +136,15 @@ public class Principal{
                             System.out.print("Ingrese duracion del curso -> ");
                             int duracion = tecladoNumeros.nextInt();
                             listaCursos[i].editarInformacionCurso(nombreCurso, area, duracion);
+                            nombre_existente = true;
                         }
-                        // else{
-                        //     System.out.println("Este curso no esta disponible aun...");
-                        //     break;
-                        // }
+                        
                         
                     }
+                }
+                if(nombre_existente){
+                    System.out.println("Este curso no esta disponible aun...");
+                    break;
                 }
 
             }else if(opcion == 5){
