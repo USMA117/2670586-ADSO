@@ -428,6 +428,26 @@ public class Facturador extends JFrame{
 			}
 		};
 		btn_buscar_vendedor.addActionListener(event_click_vendedor);
+
+		KeyListener evento_key_cliente = new KeyListener(){
+			public void keyPressed(KeyEvent e){
+				
+			}
+	
+			public void keyReleased(KeyEvent e){
+				input_nombres_cliente.setText("");
+				input_direccion_cliente.setText("");
+				
+				if(e.getKeyCode() == 10){
+					buscarCliente();
+				}
+			}
+	
+			public void keyTyped(KeyEvent e){
+			}
+		};
+	
+		input_cedula_cliente.addKeyListener( evento_key_cliente );
 	}
 
 	public void desHabilitarInput(JTextField campo){
@@ -457,7 +477,7 @@ public class Facturador extends JFrame{
 		for (int i = 0; i < listaUsuarios.length; i++) {
 			if(listaUsuarios[i] != null && listaUsuarios[i].getRol().equals("VENDEDOR") && listaUsuarios[i].getCedula().equals(cedula)){
 				input_nombres_vendedor.setText(listaUsuarios[i].getNombres());
-				
+				input_id_producto.requestFocus();
 			}
 		}
 	}
