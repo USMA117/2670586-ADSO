@@ -408,6 +408,8 @@ public class Facturador extends JFrame{
 		desHabilitarInput(input_nombres_cliente);
 		desHabilitarInput(input_direccion_cliente);
 		desHabilitarInput(input_nombres_vendedor);
+		desHabilitarInput(input_nombre_producto);
+		desHabilitarInput(input_cant_producto);
 
 		add( contPrincipal );
 		setResizable(false);
@@ -478,6 +480,15 @@ public class Facturador extends JFrame{
 			if(listaUsuarios[i] != null && listaUsuarios[i].getRol().equals("VENDEDOR") && listaUsuarios[i].getCedula().equals(cedula)){
 				input_nombres_vendedor.setText(listaUsuarios[i].getNombres());
 				input_id_producto.requestFocus();
+			}
+		}
+	}
+
+	public void buscarProducto(){
+		String id = input_id_producto.getText();
+		for(int i = 0;i < listaProductos.length;i++){
+			if(listaProductos[i] != null  ){
+
 			}
 		}
 	}
