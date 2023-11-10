@@ -457,7 +457,7 @@ public class Facturador extends JFrame{
 		for (int i = 0; i < listaUsuarios.length; i++) {
 			if(listaUsuarios[i] != null && listaUsuarios[i].getRol().equals("VENDEDOR") && listaUsuarios[i].getCedula().equals(cedula)){
 				input_nombres_vendedor.setText(listaUsuarios[i].getNombres());
-				input_id_producto.requestFocus();
+				
 			}
 		}
 	}
