@@ -458,6 +458,10 @@ public class Facturador extends JFrame{
 		campo.setBackground(new Color(238,238,238));
 	}
 
+	public void habilitarInput(JTextField campo){
+		campo.setEditable(true);
+	}
+
 	public void buscarCliente(){
 		// Extraer el dato del input
 		String cedula = input_cedula_cliente.getText();
@@ -487,8 +491,8 @@ public class Facturador extends JFrame{
 	public void buscarProducto(){
 		String id = input_id_producto.getText();
 		for(int i = 0;i < listaProductos.length;i++){
-			if(listaProductos[i] != null  ){
-
+			if(listaProductos[i] != null && listaProductos[i].getId().equals(id)){
+				input_nombre_producto.setText(listaProductos[i].getNombre());
 			}
 		}
 	}
