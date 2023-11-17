@@ -8,11 +8,15 @@ import java.awt.event.ActionListener;
 
 public class Promedio extends JFrame {
     private JPanel contenedorItems;
-    private JLabel listaJLabels[];
+    private Materia listaJLabels[];
+    private JTextField input_nota;
+    private JTextField input_materia;
+    private JTextField input_creditos;
     
     //Constructor
     public Promedio() {
-        listaJLabels = new JLabel[50];
+        JButton btn_registrar;
+        listaJLabels = new Materia[50];
         initComponents();
     }
 
@@ -251,28 +255,52 @@ public class Promedio extends JFrame {
         setVisible(true);
         revalidate();
 
-        ActionListener evento_click_registrar1 = new ActionListener() {
-            @Override
+        
+
+        ActionListener evento_click_registrar = new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                // Aquí colocas la lógica que deseas ejecutar cuando ocurra el evento
-                // Por ejemplo:
-                System.out.println("El botón ha sido clickeado");
+            registrarMateria();
             }
         };
         
+		btn_registrar.addActionListener(evento_click_registrar);
         
-        // ActionListener evento_click_registrar = new ActionListener() {
-		// 	public void actionPerformed(ActionEvent e){
-		// 		String materia = input_materia.getText();
-        //         System.out.print(materia);
-		// 	}
-		// };
-		btn_registrar.addActionListener(evento_click_registrar1);
-        for (int i = 0; i < listaJLabels.length; i++) {
-            if (listaJLabels[i] != null) {
-                
-                
+        // btn_registrar.addActionListener(new ActionListener() {
+        //     @Override
+        //     public void actionPerformed(ActionEvent e) {
+        //         String creditosText = input_creditos.getText();
+        //         // Ahora puedes usar la variable creditosText que contiene el texto del JTextField
+        //         // Por ejemplo, podrías imprimirlo en la consola
+        //         System.out.println("El valor de créditos ingresado es: " + creditosText);
+        //     }
+        // });
+            
+
+        // crear objeto materia
+        // recorrer el arreglo de materia y actualizar los jlabels
+        // calcular el promedio
+
+		// public  registrarMateria() {
+        //     for (int i = 0; i < listaJLabels.length; i++) {
+        //         if (listaJLabels[i] == null) {
+        //             listaJLabels[i] = new JLabel(); 
+        //         }
+        //         listaJLabels[i].setText(nombre);
+        //     }
+        // }
+        
+        
+    }
+    public void registrarMateria(){
+            // Extraer el dato del input
+            String materia = input_materia.getText();
+            int creditos = Integer.parseInt(input_creditos.getText());
+            double nota = Double.parseDouble(input_nota.getText());
+
+            for(int i=0; i<listaJLabels.length; i++){
+                if(listaJLabels[i] !=null){
+                    listaJLabels[i] = new Materia(materia, creditos, nota);
+                }
             }
         }
-    }
 }
