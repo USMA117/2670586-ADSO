@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class Promedio extends JFrame {
     private JPanel contenedorItems;
@@ -15,7 +16,6 @@ public class Promedio extends JFrame {
     
     //Constructor
     public Promedio() {
-        JButton btn_registrar;
         listaJLabels = new Materia[50];
         initComponents();
     }
@@ -68,7 +68,7 @@ public class Promedio extends JFrame {
 		contenedor1.add( materia, restricciones );
         restricciones.insets = new Insets(0, 0, 0, 0);
 
-		JTextField input_materia = new JTextField();
+		input_materia = new JTextField();
 		restricciones.gridy = 1;
 		restricciones.gridx = 1;
 		restricciones.gridheight = 1;
@@ -91,7 +91,7 @@ public class Promedio extends JFrame {
 		contenedor1.add( creditos, restricciones );
         restricciones.insets = new Insets(0, 0, 0, 0);
 
-		JTextField input_creditos = new JTextField();
+		input_creditos = new JTextField();
 		restricciones.gridy = 1;
 		restricciones.gridx = 3;
 		restricciones.gridheight = 1;
@@ -114,7 +114,7 @@ public class Promedio extends JFrame {
 		restricciones.fill = GridBagConstraints.BOTH;
 		contenedor1.add( nota, restricciones );
 
-		JTextField input_nota = new JTextField();
+		input_nota = new JTextField();
 		restricciones.gridy = 2;
 		restricciones.gridx = 1;
 		restricciones.gridheight = 1;
@@ -192,7 +192,6 @@ public class Promedio extends JFrame {
             etq_temporal.setOpaque(true);
             etq_temporal.setBackground( Color.white );
             etq_temporal.setBorder( borderGris );
-            this.listaJLabels[i] = etq_temporal;
             constItems.gridy = i;
             constItems.gridx = 0;
             constItems.gridheight = 1;
@@ -202,7 +201,7 @@ public class Promedio extends JFrame {
             constItems.fill = GridBagConstraints.HORIZONTAL;
             constItems.anchor = GridBagConstraints.NORTH;
             constItems.insets = new Insets(0, 0, 0, 0);
-            contenedorItems.add(this.listaJLabels[i], constItems);
+            contenedorItems.add(etq_temporal, constItems);
         }
 
         JLabel etq_total = new JLabel();
@@ -265,16 +264,6 @@ public class Promedio extends JFrame {
         
 		btn_registrar.addActionListener(evento_click_registrar);
         
-        // btn_registrar.addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         String creditosText = input_creditos.getText();
-        //         // Ahora puedes usar la variable creditosText que contiene el texto del JTextField
-        //         // Por ejemplo, podrías imprimirlo en la consola
-        //         System.out.println("El valor de créditos ingresado es: " + creditosText);
-        //     }
-        // });
-            
 
         // crear objeto materia
         // recorrer el arreglo de materia y actualizar los jlabels
@@ -294,13 +283,24 @@ public class Promedio extends JFrame {
     public void registrarMateria(){
             // Extraer el dato del input
             String materia = input_materia.getText();
-            int creditos = Integer.parseInt(input_creditos.getText());
-            double nota = Double.parseDouble(input_nota.getText());
+            int creditos = Integer.parseInt(input_creditos.getText().trim());
+            double nota = Double.parseDouble(input_nota.getText().trim());
+
+            // System.out.println("Materia-> "+materia+" Creditos-> "+creditos+" Nota-> "+nota);
+
 
             for(int i=0; i<listaJLabels.length; i++){
-                if(listaJLabels[i] !=null){
+                if(listaJLabels[i] == null){
                     listaJLabels[i] = new Materia(materia, creditos, nota);
+                    
+                    
+                }else if(listaJLabels[i] != null){
+                    System.out.print(listaJLabels[i]);
                 }
+                    
+                    // listaJLabels[i].imprimirMateria();
             }
         }
 }
+    
+

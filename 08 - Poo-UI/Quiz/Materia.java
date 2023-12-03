@@ -1,3 +1,5 @@
+import javax.swing.JLabel;
+
 public class Materia {
     Materia [] listaMaterias = new Materia[50];
     String nombre;
