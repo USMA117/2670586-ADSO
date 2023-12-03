@@ -39,6 +39,8 @@ public class Facturador extends JFrame{
 	private JButton btn_buscar_cliente;
 	private JButton btn_buscar_vendedor;
 	private JButton btn_add_producto;
+	private int posicion =0;
+	private int totalGeneral =0;
 
 	// Metodos
 	public Facturador(Usuario [] listaUsuarios,Producto [] listaProductos){
@@ -370,7 +372,7 @@ public class Facturador extends JFrame{
         Border borderGris = new CompoundBorder(borderColor, borderPadding);
         
         for (int i=0; i<this.listaJLabels.length; i++) {
-            JLabel etq_temporal = new JLabel(" ");
+            JLabel etq_temporal = new JLabel("");
             etq_temporal.setHorizontalAlignment( JLabel.RIGHT );
             etq_temporal.setFont( new Font("Arial", Font.PLAIN, 18) );
             etq_temporal.setOpaque(true);
@@ -409,7 +411,6 @@ public class Facturador extends JFrame{
 		desHabilitarInput(input_direccion_cliente);
 		desHabilitarInput(input_nombres_vendedor);
 		desHabilitarInput(input_nombre_producto);
-		desHabilitarInput(input_cant_producto);
 
 		add( contPrincipal );
 		setResizable(false);
@@ -431,6 +432,13 @@ public class Facturador extends JFrame{
 		};
 		btn_buscar_vendedor.addActionListener(event_click_vendedor);
 
+		ActionListener evento_click_producto = new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				buscarProducto();
+			}
+		};
+		btn_add_producto.addActionListener(evento_click_producto);
+
 		KeyListener evento_key_cliente = new KeyListener(){
 			public void keyPressed(KeyEvent e){
 				
@@ -450,6 +458,47 @@ public class Facturador extends JFrame{
 		};
 	
 		input_cedula_cliente.addKeyListener( evento_key_cliente );
+
+		KeyListener evento_key_vendedor = new KeyListener(){
+			public void keyPressed(KeyEvent e){
+				
+			}
+	
+			public void keyReleased(KeyEvent e){
+				
+				
+				if(e.getKeyCode() == 10){
+					buscarVendedor();
+				}
+			}
+	
+			public void keyTyped(KeyEvent e){
+			}
+		};
+		input_cedula_vendedor.addKeyListener( evento_key_vendedor );
+
+		KeyListener evento_key_producto = new KeyListener(){
+			public void keyPressed(KeyEvent e){
+				
+			}
+	
+			public void keyReleased(KeyEvent e){
+				
+				if(e.getKeyCode() == 10){
+					buscarProducto();
+					input_id_producto.setText("");
+					input_nombre_producto.setText("");
+					input_cant_producto.setText("");
+					input_id_producto.requestFocus();
+
+				}
+			}
+	
+			public void keyTyped(KeyEvent e){
+			}
+		};
+	
+		input_cant_producto.addKeyListener( evento_key_producto );
 	}
 
 	public void desHabilitarInput(JTextField campo){
@@ -490,10 +539,22 @@ public class Facturador extends JFrame{
 
 	public void buscarProducto(){
 		String id = input_id_producto.getText();
+		int cantidad = Integer.parseInt(input_cant_producto.getText().trim());
 		for(int i = 0;i < listaProductos.length;i++){
 			if(listaProductos[i] != null && listaProductos[i].getId().equals(id)){
 				input_nombre_producto.setText(listaProductos[i].getNombre());
+				
+				int precio = listaProductos[i].getPrecio();
+				int totalProducto = cantidad * precio;
+				
+				totalGeneral += totalProducto;
+				etq_total.setText("Total: $ "+totalGeneral);
+				// String resultado = listaProductos[i].getNombre()+" X "+cantidad+" => "+total;
+				// etq_resultado.setText(resultado);
+				this.listaJLabels[posicion].setText(listaProductos[i].getNombre()+" X "+cantidad+" => "+totalProducto);
+				posicion++;
 			}
 		}
 	}
+
 }
