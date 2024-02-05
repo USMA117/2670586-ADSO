@@ -265,19 +265,26 @@ public class TablaBasica extends javax.swing.JFrame {
         String telefono = campoTelefono.getText();
         String correo = campoCorreo.getText();
         
-        Object data[] = new Object[]{documento,nombres,apellidos,telefono,correo};
-
-            if(documento.equals("") 
-                    || nombres.equals("") 
-                    || apellidos.equals("") 
-                    || telefono.equals("") 
-                    || correo.equals(""))
+        
+            if(documento.equals("") || nombres.equals("") || apellidos.equals("") || telefono.equals("") || correo.equals(""))
             {    
-                Alerta alerta1 = new Alerta();
+                Alerta alerta1 = new Alerta("Los campos requeridos estan vacios.");
             }else{
                 
+                int posicion = -1;
+                for (int i=0;i<listaPersonas.length;i++) {
+                    if (listaPersonas[i]==null) {
+                        posicion = i;
+                        break;
+                }
+            }
                 
+            if (posicion!=-1) {
+                listaPersonas[posicion] = new Persona(documento, nombres, apellidos, telefono, correo);
+                
+                Object data[] = new Object[]{ documento, nombres, apellidos, telefono, correo };
                 modelo.addRow(data);
+
                 campoDocumento.setText("");
                 campoNombres.setText("");
                 campoApellidos.setText("");
@@ -285,7 +292,12 @@ public class TablaBasica extends javax.swing.JFrame {
                 campoCorreo.setText("");
                 campoDocumento.requestFocus();
             }
-        
+            for(int i = 0;listaPersonas[i] != null;i++){
+     
+                System.out.println(listaPersonas[i].getDocumento());
+
+            }
+        }
         
         
     }//GEN-LAST:event_btnAgregarActionPerformed
