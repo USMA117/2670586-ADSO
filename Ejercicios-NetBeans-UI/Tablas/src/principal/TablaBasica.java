@@ -1,6 +1,8 @@
 
 package principal;
 
+import java.awt.Color;
+import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
 
 public class TablaBasica extends javax.swing.JFrame {
@@ -24,6 +26,13 @@ public class TablaBasica extends javax.swing.JFrame {
         setVisible(true);
         setTitle("Tabla Basica");
         setLocationRelativeTo(null);
+        tablaDatos.getTableHeader().setFont(new Font("Arial",Font.BOLD,15));
+        tablaDatos.getTableHeader().setForeground(Color.WHITE);
+        tablaDatos.getTableHeader().setOpaque(false);
+        tablaDatos.getTableHeader().setBackground(Color.BLUE);
+        tablaDatos.setRowHeight(20);
+        
+        
         modelo = (DefaultTableModel) tablaDatos.getModel();
     }
     
@@ -199,7 +208,7 @@ public class TablaBasica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Documento", "Nombres", "Apelldios", "Telefono", "Correo Elec"
+                "Documento", "Nombres", "Apellidos", "Telefono", "Correo Elec"
             }
         ) {
             Class[] types = new Class [] {
@@ -217,7 +226,18 @@ public class TablaBasica extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaDatos.setFocusable(false);
+        tablaDatos.setSelectionBackground(new java.awt.Color(255, 102, 0));
+        tablaDatos.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tablaDatos.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablaDatos);
+        if (tablaDatos.getColumnModel().getColumnCount() > 0) {
+            tablaDatos.getColumnModel().getColumn(0).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(1).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(2).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(3).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout contenedorDatosLayout = new javax.swing.GroupLayout(contenedorDatos);
         contenedorDatos.setLayout(contenedorDatosLayout);
@@ -284,7 +304,23 @@ public class TablaBasica extends javax.swing.JFrame {
                 
                 Object data[] = new Object[]{ documento, nombres, apellidos, telefono, correo };
                 modelo.addRow(data);
+<<<<<<< HEAD
 
+=======
+                int posicion = -1;
+                for(int i = 0; i < listaPersonas.length;i++){
+                    if(listaPersonas[i] == null){
+                        posicion = i;
+                        break;
+                    }
+                    
+                }
+                if(posicion == -1){
+                   listaPersonas[posicion] = new Persona(documento,nombres,apellidos,telefono,correo);
+                }
+                    
+                
+>>>>>>> 729907e779221ef64159c2ad98a5a34d8ea851b8
                 campoDocumento.setText("");
                 campoNombres.setText("");
                 campoApellidos.setText("");
