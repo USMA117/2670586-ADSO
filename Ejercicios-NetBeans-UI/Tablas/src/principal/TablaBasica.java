@@ -1,6 +1,8 @@
 
 package principal;
 
+import java.awt.Color;
+import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
 
 public class TablaBasica extends javax.swing.JFrame {
@@ -24,6 +26,13 @@ public class TablaBasica extends javax.swing.JFrame {
         setVisible(true);
         setTitle("Tabla Basica");
         setLocationRelativeTo(null);
+        tablaDatos.getTableHeader().setFont(new Font("Arial",Font.BOLD,15));
+        tablaDatos.getTableHeader().setForeground(Color.WHITE);
+        tablaDatos.getTableHeader().setOpaque(false);
+        tablaDatos.getTableHeader().setBackground(Color.BLUE);
+        tablaDatos.setRowHeight(20);
+        
+        
         modelo = (DefaultTableModel) tablaDatos.getModel();
     }
     
@@ -199,7 +208,7 @@ public class TablaBasica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Documento", "Nombres", "Apelldios", "Telefono", "Correo Elec"
+                "Documento", "Nombres", "Apellidos", "Telefono", "Correo Elec"
             }
         ) {
             Class[] types = new Class [] {
@@ -217,6 +226,10 @@ public class TablaBasica extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaDatos.setFocusable(false);
+        tablaDatos.setSelectionBackground(new java.awt.Color(255, 102, 0));
+        tablaDatos.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tablaDatos.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablaDatos);
 
         javax.swing.GroupLayout contenedorDatosLayout = new javax.swing.GroupLayout(contenedorDatos);
@@ -278,6 +291,19 @@ public class TablaBasica extends javax.swing.JFrame {
                 
                 
                 modelo.addRow(data);
+                int posicion = -1;
+                for(int i = 0; i < listaPersonas.length;i++){
+                    if(listaPersonas[i] == null){
+                        posicion = i;
+                        break;
+                    }
+                    
+                }
+                if(posicion == -1){
+                   listaPersonas[posicion] = new Persona(documento,nombres,apellidos,telefono,correo);
+                }
+                    
+                
                 campoDocumento.setText("");
                 campoNombres.setText("");
                 campoApellidos.setText("");
