@@ -231,6 +231,13 @@ public class TablaBasica extends javax.swing.JFrame {
         tablaDatos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tablaDatos.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablaDatos);
+        if (tablaDatos.getColumnModel().getColumnCount() > 0) {
+            tablaDatos.getColumnModel().getColumn(0).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(1).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(2).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(3).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout contenedorDatosLayout = new javax.swing.GroupLayout(contenedorDatos);
         contenedorDatos.setLayout(contenedorDatosLayout);
