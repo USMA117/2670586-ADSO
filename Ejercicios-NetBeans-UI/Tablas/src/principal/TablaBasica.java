@@ -286,45 +286,39 @@ public class TablaBasica extends javax.swing.JFrame {
         String correo = campoCorreo.getText();
         
         
-            if(documento.equals("") || nombres.equals("") || apellidos.equals("") || telefono.equals("") || correo.equals(""))
-            {    
+            if(documento.equals("") || nombres.equals("") || apellidos.equals("") || telefono.equals("") || correo.equals("")){    
                 Alerta alerta1 = new Alerta("Los campos requeridos estan vacios.");
             }else{
                 
+                boolean datoExiste = false;
                 int posicion = -1;
                 for (int i=0;i<listaPersonas.length;i++) {
-                    if (listaPersonas[i]==null) {
-                        posicion = i;
-                        break;
-                }
-            }
-                
-            if (posicion!=-1) {
-                
-                for(int i = 0;listaPersonas != null; i++){
                     if(documento.equals(listaPersonas[i].getDocumento()) || correo.equals(listaPersonas[i].getCorreo())){
-                        Alerta alertaDatosRepetidos = new Alerta("Ya existe un registro con este mismo documento o correo.");
-                        posicion = -1;
-                    }else{
-                        listaPersonas[posicion] = new Persona(documento, nombres, apellidos, telefono, correo);
+                        Alerta alertaDatosRepetidos = new Alerta("<html><p>Ya existe un registro con este mismo documento o correo.</html></p>");
+                        datoExiste = true;
+                        break;
+                    }
+                    
+                }
                 
-                        Object data[] = new Object[]{ documento, nombres, apellidos, telefono, correo };
-                        modelo.addRow(data);
-
-
-                        for(int j = 0; j < listaPersonas.length;j++){
-                            if(listaPersonas[j] == null){
-                                posicion = j;
-                                break;
-                            }
-
-                        }
+            if (!datoExiste) {
+                
+                for(int i = 0;i < listaPersonas.length; i++){
+                    
+                    if(listaPersonas[i] == null){
+                        posicion = -1;
                         break;
                     }
                 }
-                if(posicion == -1){
-                   listaPersonas[posicion] = new Persona(documento,nombres,apellidos,telefono,correo);
+
+                if(posicion != -1){
+                    listaPersonas[posicion] = new Persona(documento, nombres, apellidos, telefono, correo);
+
+                    Object data[] = new Object[]{ documento, nombres, apellidos, telefono, correo };
+                    modelo.addRow(data);
+
                 }
+                    
                     
 
                 campoDocumento.setText("");
