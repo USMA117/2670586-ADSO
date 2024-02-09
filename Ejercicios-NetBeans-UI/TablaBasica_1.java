@@ -1,8 +1,11 @@
 
 package principal;
 
+import utils.Persona;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class TablaBasica extends javax.swing.JFrame {
@@ -34,6 +37,22 @@ public class TablaBasica extends javax.swing.JFrame {
         
         
         modelo = (DefaultTableModel) tablaDatos.getModel();
+        
+        tablaDatos.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tablaDatos.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tablaDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tablaDatos.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tablaDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
+        
+        tablaDatos.getTableHeader().setResizingAllowed(false);
+        tablaDatos.getTableHeader().setReorderingAllowed(false);
+        
+        DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();    
+        centerRender.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        tablaDatos.getColumnModel().getColumn(0).setCellRenderer(centerRender);
+        tablaDatos.getColumnModel().getColumn(3).setCellRenderer(centerRender);
+        tablaDatos.setRowHeight(20);
     }
     
     public void imprimirPersonas(){
@@ -117,23 +136,18 @@ public class TablaBasica extends javax.swing.JFrame {
         contenedorFormulario.setBackground(new java.awt.Color(0, 204, 255));
 
         etqDocumento.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        etqDocumento.setForeground(new java.awt.Color(0, 0, 0));
         etqDocumento.setText("Documento:");
 
         etqNombres.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        etqNombres.setForeground(new java.awt.Color(0, 0, 0));
         etqNombres.setText("Nombres:");
 
         etqApellidos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        etqApellidos.setForeground(new java.awt.Color(0, 0, 0));
         etqApellidos.setText("Apellidos:");
 
         etqTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        etqTelefono.setForeground(new java.awt.Color(0, 0, 0));
         etqTelefono.setText("Telefono:");
 
         etqCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        etqCorreo.setForeground(new java.awt.Color(0, 0, 0));
         etqCorreo.setText("Correo Elec...");
 
         btnAgregar.setBackground(new java.awt.Color(0, 255, 51));
