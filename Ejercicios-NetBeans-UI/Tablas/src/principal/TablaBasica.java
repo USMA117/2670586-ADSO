@@ -300,27 +300,33 @@ public class TablaBasica extends javax.swing.JFrame {
             }
                 
             if (posicion!=-1) {
-                listaPersonas[posicion] = new Persona(documento, nombres, apellidos, telefono, correo);
                 
-                Object data[] = new Object[]{ documento, nombres, apellidos, telefono, correo };
-                modelo.addRow(data);
-<<<<<<< HEAD
+                for(int i = 0;listaPersonas != null; i++){
+                    if(documento.equals(listaPersonas[i].getDocumento()) || correo.equals(listaPersonas[i].getCorreo())){
+                        Alerta alertaDatosRepetidos = new Alerta("Ya existe un registro con este mismo documento o correo.");
+                        posicion = -1;
+                    }else{
+                        listaPersonas[posicion] = new Persona(documento, nombres, apellidos, telefono, correo);
+                
+                        Object data[] = new Object[]{ documento, nombres, apellidos, telefono, correo };
+                        modelo.addRow(data);
 
-=======
-                int posicion = -1;
-                for(int i = 0; i < listaPersonas.length;i++){
-                    if(listaPersonas[i] == null){
-                        posicion = i;
+
+                        for(int j = 0; j < listaPersonas.length;j++){
+                            if(listaPersonas[j] == null){
+                                posicion = j;
+                                break;
+                            }
+
+                        }
                         break;
                     }
-                    
                 }
                 if(posicion == -1){
                    listaPersonas[posicion] = new Persona(documento,nombres,apellidos,telefono,correo);
                 }
                     
-                
->>>>>>> 729907e779221ef64159c2ad98a5a34d8ea851b8
+
                 campoDocumento.setText("");
                 campoNombres.setText("");
                 campoApellidos.setText("");
