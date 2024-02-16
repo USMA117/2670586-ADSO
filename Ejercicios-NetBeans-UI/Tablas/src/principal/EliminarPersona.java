@@ -7,7 +7,7 @@ public class EliminarPersona extends javax.swing.JFrame {
     int posicion;
     Persona listaPersonas;
     
-    public EliminarPersona(TablaBotones ventana, Persona[] listapersonas,int posicion) {
+    public EliminarPersona(TablaBotones ventana, Persona[] listaPersonas,int posicion) {
         this.listaPersonas = listaPersonas;
         this.ventana = ventana;
         this.posicion = posicion;
@@ -141,7 +141,7 @@ public class EliminarPersona extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         for (int i = 0; i < listaPersonas.length -1; i++) {
-            listaPersonas[i] = listaPersonas +1;
+            listaPersonas[i] = listaPersonas [i+1];
             
         }
         listaPersonas[listaPersonas.length-1] = null;
