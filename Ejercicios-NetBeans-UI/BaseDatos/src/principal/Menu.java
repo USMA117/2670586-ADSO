@@ -182,6 +182,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+
         String accion ="actualizar";
         BuscarPersona actualizarDatos = new BuscarPersona(accion);
     }//GEN-LAST:event_btnActualizarActionPerformed

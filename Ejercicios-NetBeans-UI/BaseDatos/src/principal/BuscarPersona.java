@@ -2,6 +2,7 @@
 package principal;
 
 import Utils.BaseDatos;
+import Utils.Persona;
 import java.sql.Connection;
 import java.sql.Statement;
 
@@ -12,6 +13,7 @@ public class BuscarPersona extends javax.swing.JFrame {
     Connection conexion = baseDatos.getConexion();
     Statement manipularBD = baseDatos.getManipularBD();
     String accion;
+
     public BuscarPersona( String accion) {
         this.accion = accion;
         initComponents();
@@ -123,6 +125,7 @@ public class BuscarPersona extends javax.swing.JFrame {
         if(accion == "actualizar"){
             String cedula = campoCedulaEliminar.getText();
             if(baseDatos.buscarPersona(cedula)){
+                
                 ActualizarPersona camposActualizar = new ActualizarPersona();
             }else{
                 ConfirmacionEliminacion confirmacion = new ConfirmacionEliminacion("Persona no encontrada");
