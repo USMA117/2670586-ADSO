@@ -16,12 +16,29 @@ public class ActualizarPersona extends javax.swing.JFrame {
     Connection conexion = baseDatos.getConexion();
     Statement manipularBD = baseDatos.getManipularBD();
     Persona listado[];
+    String cedula;
     
-    public ActualizarPersona() {
+    public ActualizarPersona(String cedula) {
+        this.cedula = cedula;
+        this.listado = baseDatos.extraerPersonas();
         initComponents();
+        initAltertComponents();
+        
+    }
+    
+    public void initAltertComponents(){
         setVisible(true);
         setLocationRelativeTo(null);
-         this.listado = listado;
+        for(int i = 0; listado[i] != null;i++){
+            if(cedula.equals(listado[i].getDocumento())){
+                campoActualizarCedula.setText(listado[i].getDocumento());
+                campoActualizarNombres.setText(listado[i].getNombres());
+                campoActualizarApellidos.setText(listado[i].getApellidos());
+                campoActualizarTelefono.setText(listado[i].getTelefono());
+                campoActualizarDireccion.setText(listado[i].getDireccion());
+                campoActualizarCorreo.setText(listado[i].getCorreo());
+            }
+        }
     }
 
 
@@ -45,7 +62,7 @@ public class ActualizarPersona extends javax.swing.JFrame {
         campoActualizarCorreo = new javax.swing.JTextField();
         btnActualizarPersona = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 255));
 
@@ -184,6 +201,7 @@ public class ActualizarPersona extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnActualizarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPersonaActionPerformed
+        
         String cedula = campoActualizarCedula.getText();
         String nombres = campoActualizarNombres.getText();
         String apellidos = campoActualizarApellidos.getText();
@@ -193,10 +211,7 @@ public class ActualizarPersona extends javax.swing.JFrame {
         
         baseDatos.actualizarPersona(cedula, nombres, apellidos, telefono, direccion, correo);
         
-        
-        /*
-        baseDatos.insertarPersona(cedula, nombres, apellidos, telefono, direccion, correo);
-        dispose();*/
+        dispose();
     }//GEN-LAST:event_btnActualizarPersonaActionPerformed
 
     private void campoActualizarNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoActualizarNombresActionPerformed
@@ -207,37 +222,7 @@ public class ActualizarPersona extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ActualizarPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ActualizarPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ActualizarPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ActualizarPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ActualizarPersona().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarPersona;

@@ -6,6 +6,7 @@ public class Persona {
         String nombres;
         String apellidos;
         String telefono ;
+        String direccion;
         String correo ;
     public int length;
         
@@ -13,12 +14,14 @@ public class Persona {
         *CONSTRUCTOR
     */
 
-    public Persona(String documento, String nombres, String apellidos, String telefono, String correo) {
+    public Persona(String documento, String nombres, String apellidos, String telefono,String direccion, String correo) {
         this.documento = documento;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
+        this.direccion = direccion;
         this.correo = correo;
+        
     }
     
     /*
@@ -39,6 +42,10 @@ public class Persona {
 
     public String getTelefono() {
         return telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
     }
 
     public String getCorreo() {
@@ -63,6 +70,11 @@ public class Persona {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    
 
     public void setCorreo(String correo) {
         this.correo = correo;

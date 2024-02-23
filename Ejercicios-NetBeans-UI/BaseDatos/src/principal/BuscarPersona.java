@@ -126,13 +126,13 @@ public class BuscarPersona extends javax.swing.JFrame {
             String cedula = campoCedulaEliminar.getText();
             if(baseDatos.buscarPersona(cedula)){
                 
-                ActualizarPersona camposActualizar = new ActualizarPersona();
+                ActualizarPersona camposActualizar = new ActualizarPersona(cedula);
             }else{
                 ConfirmacionEliminacion confirmacion = new ConfirmacionEliminacion("Persona no encontrada");
                 /*Persona no encontrada*/
             }
         }
-        
+        dispose();
     }//GEN-LAST:event_btnBuscarPersonaActionPerformed
 
     /**

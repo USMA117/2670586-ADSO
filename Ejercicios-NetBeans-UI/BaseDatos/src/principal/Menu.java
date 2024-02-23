@@ -172,8 +172,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerActionPerformed
         Persona listado[]= baseDatos.extraerPersonas();
+
         ListaPersonas lista = new ListaPersonas(listado);
-        baseDatos.imprimirPersonas();
+
+        /*baseDatos.imprimirPersonas();*/
+        /*System.out.println("->"+ listado[0].getDocumento());*/
     }//GEN-LAST:event_btnLeerActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

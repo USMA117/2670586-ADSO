@@ -36,7 +36,7 @@ public class BaseDatos {
 	    registros.next();
 	    if(registros.getRow()==1){
 	        do{
-	            System.out.println(registros.getRow()+" => "+registros.getString("nombres"));
+	            System.out.println(registros.getRow()+" => "+registros.getString("cedula")+registros.getString("nombres"));
 	        }while(registros.next());
 	    }else{
 	        System.out.println("No se encuentran clientes registrados.");
@@ -61,9 +61,10 @@ public class BaseDatos {
                     String nombres = registros.getString("nombres");
                     String apellidos = registros.getString("apellidos");
                     String telefono = registros.getString("telefono");
+                    String direccion = registros.getString("direccion");
                     String correo = registros.getString("email");
                     
-                    arreglo[i] = new Persona(documento,nombres,apellidos,telefono,correo);
+                    arreglo[i] = new Persona(documento,nombres,apellidos,telefono,direccion,correo);
                     i++;
                     
                 }while(registros.next());
