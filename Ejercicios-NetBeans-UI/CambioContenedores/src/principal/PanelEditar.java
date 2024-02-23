@@ -170,7 +170,7 @@ public class PanelEditar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void campoCorreo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCorreo1ActionPerformed
-
+        
     }//GEN-LAST:event_campoCorreo1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -187,6 +187,11 @@ public class PanelEditar extends javax.swing.JPanel {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String nombres = campoNombres.getText();
+        String apellidos = campoApellidos.getText();
+        String direccion = campoDireccion.getText();
+        String telefono = campoTelefono.getText();
+        String correo = campoCorreo1.getText();
+        baseDatos.actualizarPersona(correo, nombres, apellidos, telefono, direccion, correo);
     }//GEN-LAST:event_btnEditarActionPerformed
 
 

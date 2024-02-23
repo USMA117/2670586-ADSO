@@ -17,20 +17,17 @@ public class PanelListar extends javax.swing.JPanel {
     public PanelListar(BaseDatos baseDatos) {
         this.baseDatos = baseDatos;
         this.listaPersonas = listado;
-        //initComponents();
-        //initAlternComponents();
+        initComponents();
+        initAlternComponents();
       
-        //imprimirTabla();
+        imprimirTabla();
     }
-    /*
+    
     public void initAlternComponents(){
         setVisible(true);
 
         modelo = (DefaultTableModel) tablaPersonas.getModel();
-        tablaPersonas.getTableHeader().setFont(new Font("Arial",Font.BOLD,15));
-        tablaPersonas.getTableHeader().setForeground(Color.WHITE);
-        tablaPersonas.getTableHeader().setOpaque(false);
-        tablaPersonas.getTableHeader().setBackground(Color.BLUE);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -131,10 +128,7 @@ public class PanelListar extends javax.swing.JPanel {
 
         pack();
     }// </editor-fold>                        
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
- 
-    }                                        
+                                      
 
     public void imprimirTabla(){
         modelo.setRowCount(0);
@@ -187,6 +181,8 @@ public class PanelListar extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tablaPersonas.setFocusable(false);
+        tablaPersonas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaPersonas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -208,7 +204,7 @@ public class PanelListar extends javax.swing.JPanel {
                 .addGap(0, 58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-*/
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
