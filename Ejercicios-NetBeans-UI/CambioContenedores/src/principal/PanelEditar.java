@@ -186,7 +186,7 @@ public class PanelEditar extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        String nombres = campoNombres.getText();
     }//GEN-LAST:event_btnEditarActionPerformed
 
 
