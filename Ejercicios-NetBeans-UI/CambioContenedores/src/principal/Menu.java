@@ -5,6 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import utils.BaseDatos;
+import utils.Persona;
 
 public class Menu extends javax.swing.JFrame {
     BaseDatos baseDatos = new BaseDatos();
@@ -177,7 +178,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // Crear contenedor nuevo
-        PanelListar nuevo = new PanelListar(baseDatos);
+        Persona listado[] = baseDatos.extraerPersonas();
+        PanelListar nuevo = new PanelListar(baseDatos,listado);
         
         // Ajustar el tamaño
         nuevo.setPreferredSize(contentPrincipal.getPreferredSize());
