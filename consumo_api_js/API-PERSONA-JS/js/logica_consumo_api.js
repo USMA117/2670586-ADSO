@@ -8,7 +8,8 @@ let correo;
 let foto;
 let btn_cancelar_form;
 let btn_insertar_form;
-let urlApi = "https://codetesthub.com/API/Obtener.php"
+let urlApi = "https://codetesthub.com/API/Obtener.php";
+let alerta_persona_ingresada;
 
 window.onload = function(){
     contenedor_personas = document.getElementById('contenedor_personas');
@@ -22,6 +23,7 @@ window.onload = function(){
     foto = document.getElementById('foto');
     btn_insertar_form = document.getElementById('btn_insertar_form');
     btn_cancelar_form = document.getElementById('btn_cancelar_form');
+    alerta_persona_ingresada = document.getElementById('alerta_persona_ingresada');
     obtenerPersona();
 }
 
@@ -32,14 +34,14 @@ function obtenerPersona(){
         console.log(datosPersona);
         contenedor_personas.innerHTML+= "";
             for (let i = 0; i < datosPersona.length; i++){
-                let html_temp = `<div class="col-3 mb-2">
-                                    <div style='height:200px; border:1px solid black;'>
-                                        <img src='${datosPersona[i].foto}' style='width:100%;border:1px solid black;' >
+                let html_temp = `<div class="col-3 mb-2 text-center p-3 border ">
+                                    <div style='height:160px;'>
+                                        <img src='https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png' style='width:50%;' >
                                     </div><br>
                                     <strong>${datosPersona[i].cedula}</strong><br>
                                     <strong>${datosPersona[i].nombres} ${datosPersona[i].apellidos}</strong><br>
                                     <strong>${datosPersona[i].email}</strong><br>
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center mt-2">
                                         <div class="col-5">
                                             <button class="btn btn-success" onclick="formularioActualizar('${datosPersona[i].cedula}','${datosPersona[i].nombres}','${datosPersona[i].apellidos}','${datosPersona[i].telefono}','${datosPersona[i].direccion}','${datosPersona[i].email}','${datosPersona[i].foto}')">Actualizar</button>
                                         </div>
@@ -84,6 +86,7 @@ function insertarPersona(){
     .then(respuesta => respuesta.json())
     .then(datosPersona => {
         console.log(datosPersona);
+        window.location.reload();
     });
 }
 
@@ -129,7 +132,9 @@ function actualizarPersona(){
     .then(respuesta => respuesta.json())
     .then(datosPersona => {
         console.log(datosPersona);
+        window.location.reload();
     });
+    
 }
 
 function eliminarPersona(p_cedula){
@@ -145,9 +150,21 @@ function eliminarPersona(p_cedula){
         body:cedulaEliminar,
     }
 
-    fetch("https://codetesthub.com/API/Eliminar.php",configuracion)
-    .then(respuesta => respuesta.json())
-    .then(datosPersona =>{
-        console.log(`Persona eliminada ${datosPersona.nombres}`)
-    })
+    let resultado = confirm("¿Estás seguro de que deseas eliminar este elemento?");
+
+    if (resultado) {
+        fetch("https://codetesthub.com/API/Eliminar.php",configuracion)
+        .then(respuesta => respuesta.json())
+        .then(datosPersona =>{
+            console.log(`Persona eliminada ${datosPersona.nombres}`);
+            window.location.reload();
+        });
+    } else {
+        window.location.reload();
+    }
+    
+}
+
+function cancelarForm(){
+    window.location.reload();
 }
