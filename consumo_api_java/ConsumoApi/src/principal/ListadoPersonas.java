@@ -7,6 +7,8 @@ package principal;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import java.awt.Color;
+import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -29,24 +31,25 @@ public class ListadoPersonas extends javax.swing.JPanel {
         
         modelo = (DefaultTableModel) tablaDatos.getModel();
         
-        // Tamaño de Columnas
+        tablaDatos.getTableHeader().setFont(new Font("Arial",Font.BOLD,10));
+        tablaDatos.getTableHeader().setForeground(Color.BLACK);
+        tablaDatos.getTableHeader().setOpaque(false);
+        tablaDatos.getTableHeader().setBackground(new Color(102,204,255));
+        
         tablaDatos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tablaDatos.getColumnModel().getColumn(1).setPreferredWidth(150);
         tablaDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
         tablaDatos.getColumnModel().getColumn(3).setPreferredWidth(50);
         tablaDatos.getColumnModel().getColumn(4).setPreferredWidth(150);
         
-        // Ajuste del Orden y Ancho de Columnas
         tablaDatos.getTableHeader().setReorderingAllowed(false);
         tablaDatos.getTableHeader().setResizingAllowed(false);
         
-        // Centrar contenido de columnas
         DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
         centerRender.setHorizontalAlignment(SwingConstants.CENTER);
         tablaDatos.getColumnModel().getColumn(0).setCellRenderer(centerRender);
         tablaDatos.getColumnModel().getColumn(3).setCellRenderer(centerRender);
         
-        // Alto de las filas
         tablaDatos.setRowHeight(20);
     }
     
@@ -64,21 +67,11 @@ public class ListadoPersonas extends javax.swing.JPanel {
                 String direccion = temp.get("direccion").getAsString();
                 String correo = temp.get("email").getAsString();
                 
-                Object dato[] = new Object[]{ cedula, nombre, apellidos, telefono, direccion, correo };
+                Object dato[] = new Object[]{ cedula, nombre, apellidos,direccion, telefono, correo };
                 modelo.addRow(dato);
             
         }
-        /*
-        for (int i=0;i<listaPersonas.length && listaPersonas[i]!=null; i++) {
-            String documento = listaPersonas[i].getDocumento();
-            String nombres = listaPersonas[i].getNombres();
-            String apellidos = listaPersonas[i].getApellidos();
-            String telefono = listaPersonas[i].getTelefono();
-            String correo = listaPersonas[i].getCorreo();
-            
-            Object dato[] = new Object[]{ documento, nombres, apellidos, telefono, correo };
-            modelo.addRow(dato);
-        }*/
+        
     }
 
     
@@ -103,8 +96,19 @@ public class ListadoPersonas extends javax.swing.JPanel {
             new String [] {
                 "cedula", "nombres", "apellidos", "direccion", "telefono", "correo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaDatos);
+        if (tablaDatos.getColumnModel().getColumnCount() > 0) {
+            tablaDatos.getColumnModel().getColumn(4).setMaxWidth(50);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

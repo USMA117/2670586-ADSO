@@ -66,14 +66,18 @@ public class PanelActualizar extends javax.swing.JPanel {
         btnActualizarPersona = new javax.swing.JButton();
         alertaCampos = new javax.swing.JLabel();
 
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Cedula:");
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setText("Nombres:");
 
         campoNombres.setVerifyInputWhenFocusTarget(false);
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Apellidos:");
 
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setText("Correo:");
 
         campoTelefono.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +86,10 @@ public class PanelActualizar extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Telefono:");
 
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Direccion");
 
         campoDireccion.addActionListener(new java.awt.event.ActionListener() {
@@ -92,14 +98,19 @@ public class PanelActualizar extends javax.swing.JPanel {
             }
         });
 
+        btnActualizarPersona.setBackground(new java.awt.Color(255, 153, 0));
+        btnActualizarPersona.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnActualizarPersona.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarPersona.setText("ACTUALIZAR");
+        btnActualizarPersona.setFocusable(false);
         btnActualizarPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarPersonaActionPerformed(evt);
             }
         });
 
-        alertaCampos.setForeground(new java.awt.Color(255, 0, 51));
+        alertaCampos.setForeground(new java.awt.Color(0, 204, 51));
+        alertaCampos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -107,8 +118,8 @@ public class PanelActualizar extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(alertaCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(alertaCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -145,10 +156,11 @@ public class PanelActualizar extends javax.swing.JPanel {
                     .addComponent(jLabel6)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(campoNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -163,7 +175,7 @@ public class PanelActualizar extends javax.swing.JPanel {
                 .addComponent(alertaCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnActualizarPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -200,7 +212,8 @@ public class PanelActualizar extends javax.swing.JPanel {
         datosActualizacionPersona.put("email", correo);
 
         String respuestaActualizacion = consumo.consumoPOST("https://codetesthub.com/API/Actualizar.php", datosActualizacionPersona);
-        alertaCampos.setText(respuestaActualizacion);
+       
+        alertaCampos.setText("PERSONA ACTUALIZADA CORRECTAMENTE 👍");
 
         campoApellidos.setText("");
         campoCedula.setText("");

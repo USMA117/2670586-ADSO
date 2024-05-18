@@ -48,7 +48,11 @@ public class BuscarPersona extends javax.swing.JPanel {
 
         alertaCampo.setForeground(new java.awt.Color(255, 51, 51));
 
+        btnBuscar.setBackground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setFocusable(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -128,7 +132,7 @@ public class BuscarPersona extends javax.swing.JPanel {
         for(int i =0; i<registros.size();i++){
             JsonObject temp = registros.get(i).getAsJsonObject();
             String cedulaAPI = temp.get("cedula").getAsString();
-            cedula = campoCedula.getText();
+            cedula = campoCedula.getText().trim();
             if(cedula.equals(cedulaAPI)){
                 busqueda = true;
                 nombre = temp.get("nombres").getAsString();
@@ -141,6 +145,7 @@ public class BuscarPersona extends javax.swing.JPanel {
             
             
         }
+        
         if(!busqueda){
             alertaCampo.setText("PERSONA NO ENCONTRADA");
         }else{
@@ -174,6 +179,7 @@ public class BuscarPersona extends javax.swing.JPanel {
                 revalidate();
             }
         }
+        campoCedula.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
 

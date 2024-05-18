@@ -14,7 +14,7 @@ public class Principal {
     public static void main(String[] args) {
         
         Menu menuInicial = new Menu();
-        
+        /*
         // Instancia para realizar consumos
         ConsumoAPI consumo = new ConsumoAPI();
         
@@ -54,7 +54,7 @@ public class Principal {
         cedulaEliminar.put("cedula", "1010109");
         String respuestaEliminar = consumo.consumoPOST("https://codetesthub.com/API/Eliminar.php", cedulaEliminar);
         System.out.println("Respuesta Eliminar: "+respuestaEliminar);
-        */
+        
         
         JsonArray registros = JsonParser.parseString(respuesta01).getAsJsonArray();
         for(int i =0; i<registros.size();i++){
@@ -62,7 +62,7 @@ public class Principal {
             String nombre = temp.get("nombres").getAsString();
             String apellidos = temp.get("apellidos").getAsString();
             System.out.println(nombre+" "+apellidos);
-        }
+        }*/
     }
     
 }
