@@ -19,24 +19,26 @@ import util.ConsumoAPI;
  */
 public class Menu extends javax.swing.JFrame {
     ConsumoAPI consumo = new ConsumoAPI();
+    Gson gson = new Gson();
     JsonArray listaPokemones;
     JsonObject pokemones;
     String respuestaPokeApi;
+    String endpoint;
+    int paginaActual;
+    
     public Menu() {
+        this.paginaActual = 1;
+        this.endpoint = "https://pokeapi.co/api/v2/pokemon";
         initComponents();
         initAlterntComponents();
-        imprimirListaBotones();
+        
     }
     
     public void initAlterntComponents(){
         setVisible(true);
         setLocationRelativeTo(null);
-        respuestaPokeApi = consumo.consumoGET("https://pokeapi.co/api/v2/pokemon");
-        Gson gson = new Gson();
-        pokemones = gson.fromJson(respuestaPokeApi, JsonObject.class);
-        listaPokemones = pokemones.getAsJsonArray("results");
-
-        //System.out.println("Respuesta "+listaPokemones);
+        imprimirListaBotones(endpoint);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -94,41 +96,54 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        etqPaginaActual.setText("jLabel2");
-
+        btnSiguiente.setBackground(new java.awt.Color(51, 51, 51));
+        btnSiguiente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnSiguiente.setForeground(new java.awt.Color(255, 255, 255));
         btnSiguiente.setText("Siguiente");
+        btnSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSiguiente.setFocusable(false);
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguienteActionPerformed(evt);
             }
         });
 
+        btnAtras.setBackground(new java.awt.Color(51, 51, 51));
+        btnAtras.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnAtras.setForeground(new java.awt.Color(255, 255, 255));
         btnAtras.setText("Regresar");
+        btnAtras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAtras.setFocusable(false);
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(btnAtras)
-                .addGap(137, 137, 137)
-                .addComponent(etqPaginaActual)
+                .addGap(123, 123, 123)
+                .addComponent(etqPaginaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSiguiente)
                 .addGap(28, 28, 28))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(etqPaginaActual)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSiguiente)
-                    .addComponent(btnAtras))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(etqPaginaActual, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 5, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAtras)
+                            .addComponent(btnSiguiente))))
                 .addContainerGap())
         );
 
@@ -163,21 +178,38 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        Gson gson = new Gson();
         pokemones = gson.fromJson(respuestaPokeApi, JsonObject.class);
         String next = pokemones.get("next").getAsString();
-        listaPokemones = pokemones.getAsJsonArray("results");
-
-        System.out.println("next -"+next);
-        respuestaPokeApi = next;
-        imprimirListaBotones();
+        
+        System.out.println("prueba next - "+next);
+        paginaActual++;
+        imprimirListaBotones(next);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        String Previous = pokemones.get("previous").getAsString();
+        
+        if(Previous == null){
+            System.out.println("No puedes volver mas atras :(");
+        }else{
+            System.out.println("prueba Previous - "+Previous);
+            paginaActual--;
+            imprimirListaBotones(Previous);
+        }
+        
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
     
-    public void imprimirListaBotones(){
+    public void imprimirListaBotones(String endpoint){
+        etqPaginaActual.setText(String.valueOf(paginaActual));
+        respuestaPokeApi = consumo.consumoGET(endpoint);
+        Gson gson = new Gson();
+        pokemones = gson.fromJson(respuestaPokeApi, JsonObject.class);
+        listaPokemones = pokemones.getAsJsonArray("results");
         
         panelBotonesPokemon.removeAll();
         panelBotonesPokemon.setLayout(new BoxLayout(panelBotonesPokemon, BoxLayout.Y_AXIS));
+        
         for(int i =0; i<listaPokemones.size();i++){
             JsonObject temp = listaPokemones.get(i).getAsJsonObject();
             String nombre = temp.get("name").getAsString();
