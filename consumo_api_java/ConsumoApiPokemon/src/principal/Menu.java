@@ -53,6 +53,8 @@ public class Menu extends javax.swing.JFrame {
         etqPaginaActual = new javax.swing.JLabel();
         btnSiguiente = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
+        btnUltimaPagina = new javax.swing.JButton();
+        btnPrimeraPagina = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,7 +70,7 @@ public class Menu extends javax.swing.JFrame {
             panel_imagen_pokemonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_imagen_pokemonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panel_imagen_pokemonLayout.setVerticalGroup(
@@ -96,6 +98,8 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
+        etqPaginaActual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         btnSiguiente.setBackground(new java.awt.Color(51, 51, 51));
         btnSiguiente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnSiguiente.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,30 +124,60 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        btnUltimaPagina.setBackground(new java.awt.Color(153, 153, 153));
+        btnUltimaPagina.setForeground(new java.awt.Color(255, 255, 255));
+        btnUltimaPagina.setText(">>");
+        btnUltimaPagina.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUltimaPagina.setFocusable(false);
+        btnUltimaPagina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltimaPaginaActionPerformed(evt);
+            }
+        });
+
+        btnPrimeraPagina.setBackground(new java.awt.Color(153, 153, 153));
+        btnPrimeraPagina.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrimeraPagina.setText("<<");
+        btnPrimeraPagina.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrimeraPagina.setFocusable(false);
+        btnPrimeraPagina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrimeraPaginaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(33, 33, 33)
+                .addComponent(btnPrimeraPagina, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAtras)
-                .addGap(123, 123, 123)
-                .addComponent(etqPaginaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
+                .addComponent(etqPaginaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(btnSiguiente)
-                .addGap(28, 28, 28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUltimaPagina, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(etqPaginaActual, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 5, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAtras)
-                            .addComponent(btnSiguiente))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etqPaginaActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 3, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnAtras)
+                                .addComponent(btnPrimeraPagina, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnSiguiente)
+                                .addComponent(btnUltimaPagina, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
 
@@ -199,10 +233,21 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAtrasActionPerformed
 
+    private void btnPrimeraPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeraPaginaActionPerformed
+        paginaActual = 1;
+        imprimirListaBotones("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20");
+    }//GEN-LAST:event_btnPrimeraPaginaActionPerformed
+
+    private void btnUltimaPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimaPaginaActionPerformed
+        paginaActual = 65;
+        imprimirListaBotones("https://pokeapi.co/api/v2/pokemon?offset=1298&limit=2");
+    }//GEN-LAST:event_btnUltimaPaginaActionPerformed
+
     
     public void imprimirListaBotones(String endpoint){
         etqPaginaActual.setText(String.valueOf(paginaActual));
         respuestaPokeApi = consumo.consumoGET(endpoint);
+        
         Gson gson = new Gson();
         pokemones = gson.fromJson(respuestaPokeApi, JsonObject.class);
         listaPokemones = pokemones.getAsJsonArray("results");
@@ -213,7 +258,7 @@ public class Menu extends javax.swing.JFrame {
         for(int i =0; i<listaPokemones.size();i++){
             JsonObject temp = listaPokemones.get(i).getAsJsonObject();
             String nombre = temp.get("name").getAsString();
-            //System.out.println("Pokemon "+(i+1)+": "+nombre);
+            System.out.println("Pokemon "+(i+1)+": "+nombre);
             
             BotonPokemon boton = new BotonPokemon(temp,panel_imagen_pokemon,consumo);
             
@@ -257,7 +302,9 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnPrimeraPagina;
     private javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnUltimaPagina;
     private javax.swing.JLabel etqPaginaActual;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
