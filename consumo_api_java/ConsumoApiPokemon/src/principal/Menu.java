@@ -6,6 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import components.BotonPokemon;
+import components.ImagenPokemon;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BoxLayout;
@@ -25,7 +26,7 @@ public class Menu extends javax.swing.JFrame {
     String respuestaPokeApi;
     String endpoint;
     int paginaActual;
-    
+    int pokemonActual;
     public Menu() {
         this.paginaActual = 1;
         this.endpoint = "https://pokeapi.co/api/v2/pokemon";
@@ -259,8 +260,8 @@ public class Menu extends javax.swing.JFrame {
             JsonObject temp = listaPokemones.get(i).getAsJsonObject();
             String nombre = temp.get("name").getAsString();
             System.out.println("Pokemon "+(i+1)+": "+nombre);
-            
-            BotonPokemon boton = new BotonPokemon(temp,panel_imagen_pokemon,consumo);
+            pokemonActual ++;
+            BotonPokemon boton = new BotonPokemon(temp,panel_imagen_pokemon,consumo,pokemonActual);
             
             panelBotonesPokemon.add(boton);
             

@@ -15,11 +15,13 @@ public class BotonPokemon extends javax.swing.JPanel {
     String nombrePokemon;
     JPanel panel_imagen_pokemon;
     ConsumoAPI consumo;
-    public BotonPokemon(JsonObject pokemon,JPanel panel_imagen_pokemon,ConsumoAPI consumo) {
+    int pokemonActual;
+    public BotonPokemon(JsonObject pokemon,JPanel panel_imagen_pokemon,ConsumoAPI consumo,int pokemonActual) {
         this.nombrePokemon = pokemon.get("name").getAsString();
         this.panel_imagen_pokemon = panel_imagen_pokemon;
         this.pokemon = pokemon;
         this.consumo = consumo;
+        this.pokemonActual = pokemonActual;
         initComponents();
         initAltertComponents();
     }
@@ -66,7 +68,7 @@ public class BotonPokemon extends javax.swing.JPanel {
 
     private void btnPokemonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokemonActionPerformed
         
-        ImagenPokemon nuevo = new ImagenPokemon(pokemon,consumo);
+        ImagenPokemon nuevo = new ImagenPokemon(pokemon,consumo,pokemonActual);
         System.out.println("----++++"+nombrePokemon);
         nuevo.setPreferredSize( panel_imagen_pokemon.getPreferredSize() );
         nuevo.setSize( panel_imagen_pokemon.getSize() );
