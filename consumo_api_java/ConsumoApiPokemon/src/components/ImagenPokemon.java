@@ -43,6 +43,7 @@ public class ImagenPokemon extends javax.swing.JPanel {
     }
     
     public void initAlterntComponents(){
+        
         Image icono_siguiente = getToolkit().createImage(ClassLoader.getSystemResource("img/img_siguiente.png"));
         icono_siguiente = icono_siguiente.getScaledInstance(40,40,Image.SCALE_SMOOTH);
         etqSiguiente.setIcon(new ImageIcon(icono_siguiente));

@@ -7,10 +7,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import components.BotonPokemon;
 import components.ImagenPokemon;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Image;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import util.ConsumoAPI;
 
@@ -36,9 +41,16 @@ public class Menu extends javax.swing.JFrame {
     }
     
     public void initAlterntComponents(){
-        setVisible(true);
+        setIconImage(getToolkit().createImage( ClassLoader.getSystemResource("img/pokeball.png") ));
+        
         setLocationRelativeTo(null);
+        /*
+        ImageIcon pokemonGif =  new ImageIcon(ClassLoader.getSystemResource("img/pokeball.gif"));
+        mensajeBienvenida.setIcon(pokemonGif);
+        */
         imprimirListaBotones(endpoint);
+        setVisible(true);
+
         
     }
 
@@ -213,12 +225,19 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        pokemones = gson.fromJson(respuestaPokeApi, JsonObject.class);
-        String next = pokemones.get("next").getAsString();
-        
+        //String next = "";
+        /*try {
+            next = pokemones.get("next").getAsString();
+        } catch (Exception e) {
+            System.out.println("Sin internet");
+        }
+        */
+         String next = pokemones.get("next").getAsString();
         System.out.println("prueba next - "+next);
         paginaActual++;
         imprimirListaBotones(next);
+        panel_imagen_pokemon.removeAll();
+      
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
@@ -230,6 +249,8 @@ public class Menu extends javax.swing.JFrame {
             System.out.println("prueba Previous - "+Previous);
             paginaActual--;
             imprimirListaBotones(Previous);
+            panel_imagen_pokemon.removeAll();
+
         }
         
     }//GEN-LAST:event_btnAtrasActionPerformed
@@ -247,6 +268,7 @@ public class Menu extends javax.swing.JFrame {
     
     public void imprimirListaBotones(String endpoint){
         etqPaginaActual.setText(String.valueOf(paginaActual));
+        
         respuestaPokeApi = consumo.consumoGET(endpoint);
         
         Gson gson = new Gson();
