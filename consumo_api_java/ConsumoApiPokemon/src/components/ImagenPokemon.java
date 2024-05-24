@@ -39,7 +39,7 @@ public class ImagenPokemon extends javax.swing.JPanel {
         initComponents();
         initAlterntComponents();
         // System.out.println("Este es el panel de la imagen");
-        obtenerImagen(urlPokemon);
+        obtenerImagen(urlPokemon,1);
     }
     
     public void initAlterntComponents(){
@@ -160,23 +160,31 @@ public class ImagenPokemon extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void etqSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etqSiguienteMouseClicked
-        pokemonActual++;
-        urlPokemon = "https://pokeapi.co/api/v2/pokemon/"+pokemonActual+"/";
-        obtenerImagen(urlPokemon);
+        //pokemonActual++;
+        //urlPokemon = "https://pokeapi.co/api/v2/pokemon/"+pokemonActual+"/";
+        int id_imagen = 2;
+        obtenerImagen(urlPokemon,id_imagen);
         System.out.println("pokemonActual -> "+pokemonActual);
+        
     }//GEN-LAST:event_etqSiguienteMouseClicked
 
     private void etqRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_etqRegresarMouseClicked
-        pokemonActual--;
-        urlPokemon = "https://pokeapi.co/api/v2/pokemon/"+pokemonActual+"/";
-        obtenerImagen(urlPokemon);
+        //pokemonActual--;
+        //urlPokemon = "https://pokeapi.co/api/v2/pokemon/"+pokemonActual+"/";
+        int id_imagen = 1;
+        obtenerImagen(urlPokemon,id_imagen);
     }//GEN-LAST:event_etqRegresarMouseClicked
-    public void obtenerImagen(String urlPokemon){
+    public void obtenerImagen(String urlPokemon,int id_imagen){
         
-        if(pokemonActual == 1){
+        if(id_imagen == 1){
             etqRegresar.setEnabled(false);
         }else{
             etqRegresar.setEnabled(true);
+        }
+        if(id_imagen == 2){
+            etqSiguiente.setEnabled(false);
+        }else{
+            etqSiguiente.setEnabled(true);
         }
         Gson gson = new Gson();
         String respuestaPokeApi = consumo.consumoGET(urlPokemon);
@@ -189,14 +197,20 @@ public class ImagenPokemon extends javax.swing.JPanel {
         String front_default = sprites.get("front_default").getAsString();
         System.out.println("front_default "+front_default);
         JsonObject other = sprites.get("other").getAsJsonObject();
-        JsonObject dream_world = other.get("dream_world").getAsJsonObject();
+        JsonObject dream_world = other.get("official-artwork").getAsJsonObject();
         String imagen_url = dream_world.get("front_default").getAsString();
 
+        if(id_imagen == 1){
+            imagen_url = dream_world.get("front_default").getAsString();
+        }else if(id_imagen == 2){
+            imagen_url = dream_world.get("front_shiny").getAsString();
+        }
+        
         System.out.println("Datos pokemon: "+imagen_url);
         
         try {
             // Leer la imagen desde la URL
-            URL url = new URL(front_default);
+            URL url = new URL(imagen_url);
             System.out.println("url -- "+url);
             Image imagen = ImageIO.read(url);
 
@@ -230,6 +244,7 @@ public class ImagenPokemon extends javax.swing.JPanel {
         
 
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel etqImagenPokemon;
