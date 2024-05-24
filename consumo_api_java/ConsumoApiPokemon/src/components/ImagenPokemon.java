@@ -69,10 +69,9 @@ public class ImagenPokemon extends javax.swing.JPanel {
         setForeground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(460, 360));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        nombrePokemon.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        nombrePokemon.setForeground(new java.awt.Color(255, 255, 255));
+        nombrePokemon.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         nombrePokemon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombrePokemon.setText("Selecciona un pokemon");
 

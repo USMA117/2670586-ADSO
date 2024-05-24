@@ -2,6 +2,7 @@
 package components;
 
 import com.google.gson.JsonObject;
+import java.awt.Color;
 import javax.swing.JPanel;
 import util.ConsumoAPI;
 
@@ -28,7 +29,6 @@ public class BotonPokemon extends javax.swing.JPanel {
 
     public void initAltertComponents(){
         btnPokemon.setText(nombrePokemon);
-        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -67,7 +67,10 @@ public class BotonPokemon extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPokemonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokemonActionPerformed
-        
+        btnPokemon.setOpaque(true);
+        btnPokemon.setBackground(Color.WHITE);
+        btnPokemon.setForeground(Color.BLACK);
+
         ImagenPokemon nuevo = new ImagenPokemon(pokemon,consumo,pokemonActual);
         System.out.println("----++++"+nombrePokemon);
         nuevo.setPreferredSize( panel_imagen_pokemon.getPreferredSize() );
