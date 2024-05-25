@@ -47,7 +47,7 @@ public class DetallePokemon extends javax.swing.JPanel {
         JsonArray habilidades = this.pokemon.getAsJsonArray("abilities");
         for (int i=0; i<habilidades.size(); i++) {
             JsonObject temp = habilidades.get(i).getAsJsonObject().getAsJsonObject("ability");
-            Object[] fila = new Object[]{ i, temp.get("name").getAsString(), temp.get("url").getAsString()};
+            Object[] fila = new Object[]{ (i+1), temp.get("name").getAsString(), temp.get("url").getAsString()};
             modelo.addRow(fila);
         }
         
@@ -101,16 +101,13 @@ public class DetallePokemon extends javax.swing.JPanel {
         etqNombre.setText("-------");
 
         etqImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etqImagen.setText("jLabel1");
 
-        etqAtras.setText("jLabel2");
         etqAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etqAtrasMouseClicked(evt);
             }
         });
 
-        etqSiguiente.setText("jLabel2");
         etqSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 etqSiguienteMouseClicked(evt);
@@ -143,16 +140,16 @@ public class DetallePokemon extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(etqNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addComponent(etqAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(etqImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(etqSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
