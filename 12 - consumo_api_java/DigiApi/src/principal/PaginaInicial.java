@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -18,8 +20,13 @@ import util.ConsumoAPI;
 public class PaginaInicial extends javax.swing.JFrame {
 
     ConsumoAPI consumo = new ConsumoAPI() ;
+    int paginaActual;
+    int cant_paginas[];
     public PaginaInicial() {
         this.consumo = consumo;
+        this.paginaActual = 0;
+        this.cant_paginas = new int[]{1,2,3,4,5,6,7};
+        
         initComponents();
         initAlternComponents();
         imprimirDigimones();
@@ -101,7 +108,7 @@ public class PaginaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void imprimirDigimones(){
-        String respuesta = consumo.consumoGET("https://digi-api.com/api/v1/digimon");
+        String respuesta = consumo.consumoGET("https://digi-api.com/api/v1/digimon?page="+paginaActual);
         JsonObject digimones =JsonParser.parseString(respuesta).getAsJsonObject();
         JsonArray listaDigimones = digimones.get("content").getAsJsonArray();
         System.out.println(digimones);
@@ -120,23 +127,93 @@ public class PaginaInicial extends javax.swing.JFrame {
     }
     public void imprimirPaginador(){
         panelPaginador.add(Box.createHorizontalGlue());
+        
         JButton btnAtras = new JButton("<<");
         panelPaginador.add(btnAtras);
+        btnAtras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(int i = 0;i < cant_paginas.length;i++){
+                    cant_paginas[i] = cant_paginas[i]-1;
+                }
+                panelDigimones.removeAll();
+                panelPaginador.removeAll();
+                imprimirDigimones();
+                imprimirPaginador();
+            }
+        });
+        
         JButton btnPaginaAtras = new JButton("<");
         panelPaginador.add(btnPaginaAtras);
+        btnPaginaAtras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelDigimones.removeAll();
+                panelPaginador.removeAll();
+                paginaActual--;
+                imprimirDigimones();
+                imprimirPaginador();
+            }
+        });
         
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < cant_paginas.length; i++) {
             JButton botonesPagina = new JButton();
             botonesPagina.setBackground(Color.white);
             botonesPagina.setForeground(Color.black);
-            botonesPagina.setText(String.valueOf(i+1));
+            botonesPagina.setText(String.valueOf(cant_paginas[i]));
+            if (paginaActual == i){
+                botonesPagina.setBackground(Color.red);
+                botonesPagina.setForeground(Color.white);
+            }
+            final int indicePagina = i;
+            botonesPagina.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    paginaActual = indicePagina;
+                    if (paginaActual == indicePagina){
+                        botonesPagina.setBackground(Color.red);
+                        botonesPagina.setForeground(Color.white);
+                    }
+                    panelDigimones.removeAll();
+                    panelPaginador.removeAll();
+                    imprimirDigimones();
+                    imprimirPaginador();
+                }
+            });
             panelPaginador.add(botonesPagina);
         }
         
         JButton btnPaginaSiguiente = new JButton(">");
         panelPaginador.add(btnPaginaSiguiente);
+        btnPaginaSiguiente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                paginaActual++;
+                panelDigimones.removeAll();
+                panelPaginador.removeAll();
+                imprimirDigimones();
+                imprimirPaginador();
+                
+            }
+        });
+        
         JButton btnSiguiente = new JButton(">>");
         panelPaginador.add(btnSiguiente);
+        btnSiguiente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("pagina actual -- "+paginaActual);
+                for(int i = 0;i < cant_paginas.length;i++){
+                    cant_paginas[i] = cant_paginas[i]+1;
+                }
+                
+                panelDigimones.removeAll();
+                panelPaginador.removeAll();
+                imprimirDigimones();
+                imprimirPaginador();
+            }
+        });
+        
         panelPaginador.add(Box.createHorizontalGlue());
         panelPaginador.repaint();
         panelPaginador.revalidate();

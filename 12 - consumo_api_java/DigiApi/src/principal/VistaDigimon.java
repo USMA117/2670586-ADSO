@@ -6,6 +6,7 @@ package principal;
 
 import com.google.gson.JsonObject;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
@@ -27,10 +28,16 @@ public class VistaDigimon extends javax.swing.JPanel {
         this.nombreDigimon = digimonActual.get("name").getAsString();
         this.urlImagen = digimonActual.get("image").getAsString();
         initComponents();
-        imprimirDigimon();
         setVisible(true);
+        initAlterntComponents();
+        imprimirDigimon();
+        
     }
 
+    public void initAlterntComponents(){
+        setVisible(true);
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
     public void imprimirDigimon(){
         try {
             URL url = new URL(urlImagen);
@@ -93,9 +100,7 @@ public class VistaDigimon extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-
-        VistaIndividualDigimon nuevo = new VistaIndividualDigimon(digimonActual);
-        
+        VistaIndividualDigimon nuevo = new VistaIndividualDigimon(digimonActual);  
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
