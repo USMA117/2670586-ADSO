@@ -53,6 +53,8 @@ public class PaginaInicial extends javax.swing.JFrame {
         scrollDigimones.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollDigimones.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
+        panelDigimones.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panelDigimonesLayout = new javax.swing.GroupLayout(panelDigimones);
         panelDigimones.setLayout(panelDigimonesLayout);
         panelDigimonesLayout.setHorizontalGroup(
@@ -104,10 +106,11 @@ public class PaginaInicial extends javax.swing.JFrame {
         JsonArray listaDigimones = digimones.get("content").getAsJsonArray();
         System.out.println(digimones);
         panelDigimones.setLayout(new GridLayout(2,3));
+        
         for (int i = 0; i < listaDigimones.size(); i++) {
             JsonObject digimonActual = listaDigimones.get(i).getAsJsonObject();
             String nombreDigimon = digimonActual.get("name").getAsString();
-            VistaDigimon vista = new VistaDigimon(digimonActual,panelDigimones);
+            VistaDigimon vista = new VistaDigimon(digimonActual);
             
             panelDigimones.add(vista);
             System.out.println("nombre: "+i+" "+nombreDigimon);
@@ -121,6 +124,7 @@ public class PaginaInicial extends javax.swing.JFrame {
         panelPaginador.add(btnAtras);
         JButton btnPaginaAtras = new JButton("<");
         panelPaginador.add(btnPaginaAtras);
+        
         for (int i = 0; i < 7; i++) {
             JButton botonesPagina = new JButton();
             botonesPagina.setBackground(Color.white);
@@ -128,6 +132,7 @@ public class PaginaInicial extends javax.swing.JFrame {
             botonesPagina.setText(String.valueOf(i+1));
             panelPaginador.add(botonesPagina);
         }
+        
         JButton btnPaginaSiguiente = new JButton(">");
         panelPaginador.add(btnPaginaSiguiente);
         JButton btnSiguiente = new JButton(">>");
