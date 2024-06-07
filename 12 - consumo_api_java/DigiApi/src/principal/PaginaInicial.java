@@ -25,7 +25,7 @@ public class PaginaInicial extends javax.swing.JFrame {
     public PaginaInicial() {
         this.consumo = consumo;
         this.paginaActual = 0;
-        this.cant_paginas = new int[]{1,2,3,4,5,6,7};
+        this.cant_paginas = new int[]{0,1,2,3,4,5,6,7};
         
         initComponents();
         initAlternComponents();
@@ -156,16 +156,16 @@ public class PaginaInicial extends javax.swing.JFrame {
             }
         });
         
-        for (int i = 0; i < cant_paginas.length; i++) {
+        for (int i = 0; i < cant_paginas.length-1; i++) {
             JButton botonesPagina = new JButton();
             botonesPagina.setBackground(Color.white);
             botonesPagina.setForeground(Color.black);
-            botonesPagina.setText(String.valueOf(cant_paginas[i]));
-            if (paginaActual == i){
+            botonesPagina.setText(String.valueOf(cant_paginas[i+1]));
+            if (paginaActual == cant_paginas[i]){
                 botonesPagina.setBackground(Color.red);
                 botonesPagina.setForeground(Color.white);
             }
-            final int indicePagina = i;
+            final int indicePagina = cant_paginas[i];
             botonesPagina.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -188,12 +188,12 @@ public class PaginaInicial extends javax.swing.JFrame {
         btnPaginaSiguiente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               
                 paginaActual++;
                 panelDigimones.removeAll();
                 panelPaginador.removeAll();
                 imprimirDigimones();
-                imprimirPaginador();
-                
+                imprimirPaginador();   
             }
         });
         
@@ -206,7 +206,6 @@ public class PaginaInicial extends javax.swing.JFrame {
                 for(int i = 0;i < cant_paginas.length;i++){
                     cant_paginas[i] = cant_paginas[i]+1;
                 }
-                
                 panelDigimones.removeAll();
                 panelPaginador.removeAll();
                 imprimirDigimones();
