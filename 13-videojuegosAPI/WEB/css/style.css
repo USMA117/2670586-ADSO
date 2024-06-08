@@ -1,6 +1,17 @@
 *{
 font-family: Arial, Helvetica, sans-serif;
 }
+
+header{
+    top: 0;
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.842);
+}
+
+#catalogo_juegos{
+    margin-top: 100px;
+}
 #btn_ingresar_persona{
     text-decoration: none;
     font-size: 23px;
@@ -13,7 +24,7 @@ font-family: Arial, Helvetica, sans-serif;
 }
 #catalogo_juegos{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(4,1fr);
     justify-content: center;
     align-content: center;
     justify-items: center;
@@ -23,6 +34,9 @@ font-family: Arial, Helvetica, sans-serif;
     margin-top: 20px;
     text-align: center;
     width: 250px;
+}
+.contenedor_videojuego:hover{
+opacity: 1;
 }
 
 .contenedor_videojuego:hover{
@@ -38,8 +52,11 @@ font-family: Arial, Helvetica, sans-serif;
     font-size: 19px;
     font-weight: bold;
 }
+.juego_nombre:hover{
+    color: rgb(9, 64, 241);
+}
 
-#modal{
+#modal_actualizar{
     display: none;
     position: fixed;
     z-index: 1; 
@@ -55,7 +72,23 @@ font-family: Arial, Helvetica, sans-serif;
     margin-top: 100px;
     border-radius: 15px;
 }
-#cerrar_modal:hover{
+#modal_insertar{
+    display: none;
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 700px;
+    height: 770px;
+    /* padding-left: 150px; */
+    padding-top: 70px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 1px 10px black;
+    margin-inline: 33%;
+    margin-top: 100px;
+    border-radius: 15px;
+}
+.btn_cerrar_modal:hover{
     cursor: pointer;
 }
 .input_modal{
