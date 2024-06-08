@@ -12,7 +12,7 @@
         </header>
         <div class="container bg-dark text-white mt-3 rounded py-3">
             <h3 class="text-center mb-1">OBTENER VIDEJUEGOS</h3><hr>
-            <h4>Endpoint: <a href="http://localhost/videojuegosAPI/API/obtenerVideojuegos.php">videojuegosAPI/API/obtenerVideojuegos.php</a></h4>
+            <h4>Endpoint: <a href="http://localhost/13-videojuegosAPI/API/obtenerVideojuegos.php">videojuegosAPI/API/obtenerVideojuegos.php</a></h4>
             <h4>Respuesta:</h4>
             <pre>
                 [
@@ -30,7 +30,7 @@
         </div>
         <div class="container bg-dark text-white mt-3 rounded py-3">
             <h3 class="text-center mb-1">INSERTAR VIDEOJUEGO </h3><hr>
-            <h4>Endpoint: <a href="http://localhost/videojuegosAPI/API/insertarVideojuego.php">videojuegosAPI/API/insertarVideojuego.php</a></h4>
+            <h4>Endpoint: <a href="http://localhost/13-videojuegosAPI/API/insertarVideojuego.php">videojuegosAPI/API/insertarVideojuego.php</a></h4>
             <h4>Respuesta:</h4>
             <pre>
                 EXITO: {
@@ -46,7 +46,7 @@
         </div>
         <div class="container bg-dark text-white mt-3 rounded py-3">
             <h3 class="text-center mb-1">ACTUALIZAR VIDEOJUEGO</h3><hr>
-            <h4>Endpoint: <a href="http://localhost/videojuegosAPI/API/actualizarVideojuego.php">videojuegosAPI/API/actualizarVideojuego.php</a></h4>
+            <h4>Endpoint: <a href="http://localhost/13-videojuegosAPI/API/actualizarVideojuego.php">videojuegosAPI/API/actualizarVideojuego.php</a></h4>
             <h4>Respuesta:</h4>
             <pre>
                 EXITO: {
@@ -62,7 +62,7 @@
         </div>
         <div class="container bg-dark text-white mt-3 rounded py-3">
             <h3 class="text-center mb-1">ELIMINAR VIDEOJUEGO</h3><hr>
-            <h4>Endpoint: <a href="http://localhost/videojuegosAPI/API/eliminarVideojuego.php">videojuegosAPI/API/eliminarVideojuego.php</a></h4>
+            <h4>Endpoint: <a href="http://localhost/13-videojuegosAPI/API/eliminarVideojuego.php">videojuegosAPI/API/eliminarVideojuego.php</a></h4>
             <h4>Respuesta:</h4>
             <pre>
                 EXITO: {

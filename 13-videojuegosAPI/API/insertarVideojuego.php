@@ -1,7 +1,7 @@
 <?php
     include "../DB/conexion.php";
 
-    if(!empty($_POST["nombre_videojuego"]) && !empty($_POST["descripcion_videojuego"]) && !empty($_POST["durl_portada"]) && !empty($_POST["id_categoria"])){
+    if(!empty($_POST["nombre_videojuego"]) && !empty($_POST["descripcion_videojuego"]) && !empty($_POST["url_portada"]) && !empty($_POST["id_categoria"])){
         $nombre_videojuego = $_POST["nombre_videojuego"];
         $descripcion_videojuego = $_POST["descripcion_videojuego"];
         $url_portada = $_POST["url_portada"];

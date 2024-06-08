@@ -1,42 +1,64 @@
 <?php
     include "../DB/conexion.php";
 
-    if(!empty($_POST["nombre_videojuego"]) && !empty($_POST["descripcion_videojuego"]) && !empty($_POST["durl_portada"]) && !empty($_POST["id_categoria"])){
+    // Verificar si se han enviado todos los datos necesarios
+    if(!empty($_POST["id_juego"]) && !empty($_POST["nombre_videojuego"]) && !empty($_POST["descripcion_videojuego"]) && !empty($_POST["url_portada"])) {
         $nombre_videojuego = $_POST["nombre_videojuego"];
         $descripcion_videojuego = $_POST["descripcion_videojuego"];
         $url_portada = $_POST["url_portada"];
-        $id_categoria = $_POST["id_categoria"];
+        $id_juego = $_POST["id_juego"];
+
+        // Imprimir los valores recibidos para verificar
+        echo "id_juego: " . $id_juego . "\n";
+        echo "nombre_videojuego: " . $nombre_videojuego . "\n";
+        echo "descripcion_videojuego: " . $descripcion_videojuego . "\n";
+        echo "url_portada: " . $url_portada . "\n";
 
         try {
-            $query_actualizar_videojuego = $base_datos->prepare("UPDATE videojuegos SET nombre_videojuego = :nombre,descripcion_videojuego = :descripcion,url_portada=:portada,id_categoria = :categoria ");
-            $query_actualizar_videojuego->bindParam(":nombre",$nombre_videojuego);
-            $query_actualizar_videojuego->bindParam(":descripcion",$descripcion_videojuego);
-            $query_actualizar_videojuego->bindParam(":portada",$url_portada);
-            $query_actualizar_videojuego->bindParam(":categoria",$id_categoria);
+            // Preparar la consulta SQL para actualizar el videojuego
+            $query_actualizar_videojuego = $base_datos->prepare("UPDATE videojuego SET nombre_videojuego=:nombre, descripcion_videojuego=:descripcion, url_portada=:portada WHERE id_juego=:id");
+            $query_actualizar_videojuego->bindParam(":nombre", $nombre_videojuego);
+            $query_actualizar_videojuego->bindParam(":descripcion", $descripcion_videojuego);
+            $query_actualizar_videojuego->bindParam(":portada", $url_portada);
+            $query_actualizar_videojuego->bindParam(":id", $id_juego);
 
+            // Ejecutar la consulta
             $ejecucion = $query_actualizar_videojuego->execute();
 
-            if($ejecucion && $query_actualizar_videojuego->rowCount() != 0){
+            // Verificar si la actualización fue exitosa
+            if($ejecucion) {
+                // Verificar el número de filas afectadas
+                $filas_afectadas = $query_actualizar_videojuego->rowCount();
+                if ($filas_afectadas > 0) {
+                    $respuesta = [
+                        "estado_operacion" => true,
+                        "mensaje" => "Dato actualizado con éxito"
+                    ];
+                } else {
+                    $respuesta = [
+                        "estado_operacion" => false,
+                        "mensaje" => "No se encontró ningún registro para actualizar o no hubo cambios en los datos"
+                    ];
+                }
+            } else {
                 $respuesta = [
-                    "Estado operacion" => TRUE,
-                    "Mensaje"=>"Dato actualizado con exito"
+                    "estado_operacion" => false,
+                    "mensaje" => "El dato no se ha podido actualizar"
                 ];
-                echo json_encode($respuesta);
-            }else{
-                $respuesta = [
-                    "Estado operacion" => FALSE,
-                    "Mensaje"=>"El dato no se ha podido actualizar"
-                ];
-                echo json_encode($respuesta);
             }
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            $respuesta = [
+                "estado_operacion" => false,
+                "mensaje" => "Error: " . $e->getMessage()
+            ];
         }
 
-    }else{
+        // Devolver la respuesta en formato JSON
+        echo json_encode($respuesta);
+    } else {
         $respuesta = [
-            "Estado operacion"=> FALSE,
-            'Razon' => "ERROR EN DATOS AL ACTUALIZAR"
+            "estado_operacion" => false,
+            "razon" => "ERROR EN DATOS AL ACTUALIZAR"
         ];
         echo json_encode($respuesta);
     }

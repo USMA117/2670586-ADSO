@@ -20,8 +20,8 @@ CREATE TABLE videojuego(
 
 
 
-INSERT INTO categoria (nombre_categoria,descripcion_categoria)VALUES (1,"Accion");
-INSERT INTO categoria (nombre_categoria,descripcion_categoria)VALUES (2,"Aventura");
+INSERT INTO categoria (nombre_categoria,descripcion_categoria)VALUES ("Accion","Mucha Accion");
+INSERT INTO categoria (nombre_categoria,descripcion_categoria)VALUES ("Aventura","Eres un aventurero");
 
 
 INSERT INTO videojuego (nombre_videojuego, descripcion_videojuego, url_portada, id_categoria) VALUES ("Spiderman", "Prueba de spiderman 1","https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/B2aUYFC0qUAkNnjbTHRyhrg3.png",1);
@@ -31,3 +31,6 @@ INSERT INTO videojuego (nombre_videojuego, descripcion_videojuego, url_portada, 
 INSERT INTO videojuego (nombre_videojuego, descripcion_videojuego, url_portada, id_categoria) VALUES ("Call of Duty: Modern Warfare", "Juego completo","https://www.activision.com/content/dam/atvi/activision/atvi-touchui/activision/home/assets/cod-mw.jpg",1);
 
 INSERT INTO videojuego (nombre_videojuego, descripcion_videojuego, url_portada, id_categoria) VALUES ("Halo infinite", "Juego completo","https://static.wikia.nocookie.net/halo/images/3/3e/Halo_infinite_vertical.png/revision/latest?cb=20200722153039&path-prefix=es",2);
+
+
+INSERT INTO videojuego (nombre_videojuego, descripcion_videojuego, url_portada, id_categoria) VALUES ("Gears of war", "Juego completo","https://cdn.gearsofwar.com/gearsofwar/sites/9/2020/02/gears-of-war-2000x2000-5e4712f2a008b-1024x1024.jpg",1);
