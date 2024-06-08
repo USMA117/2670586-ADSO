@@ -8,11 +8,11 @@
         $id_categoria = $_POST["id_categoria"];
 
         try {
-            $query_insertar_datos = $base_datos->prepare("INSERT INTO videojuegos (nombre_videojuego, descripcion_video, url_portada, id_categoria) VALUES (:nombre, :descripcion,:portada,:categoria");
+            $query_insertar_datos = $base_datos->prepare("INSERT INTO videojuego (nombre_videojuego, descripcion_videojuego, url_portada, id_categoria) VALUES (:nombre, :descripcion,:portada,:categoria)");
             $query_insertar_datos->bindParam(":nombre",$nombre_videojuego);
             $query_insertar_datos->bindParam(":descripcion",$descripcion_videojuego);
             $query_insertar_datos->bindParam(":portada",$url_portada);
-            $query_insertar_datos->bindPrama(":categoria",$id_categoria);
+            $query_insertar_datos->bindParam(":categoria",$id_categoria);
 
             $ejecucion = $query_insertar_datos->execute();
 

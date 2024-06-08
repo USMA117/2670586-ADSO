@@ -8,13 +8,13 @@
         $id_categoria = $_POST["id_categoria"];
 
         try {
-            $query_actualizar_videojuego = $base_datos->prepare("UPDATE videojuegos SET ");
-            $query_actualizar_videojuego->bindParam(":nombre_videojuego",$nombre_videojuego);
-            $query_actualizar_videojuego->bindPram(":descripcion",$descripcion_videojuego);
+            $query_actualizar_videojuego = $base_datos->prepare("UPDATE videojuegos SET nombre_videojuego = :nombre,descripcion_videojuego = :descripcion,url_portada=:portada,id_categoria = :categoria ");
+            $query_actualizar_videojuego->bindParam(":nombre",$nombre_videojuego);
+            $query_actualizar_videojuego->bindParam(":descripcion",$descripcion_videojuego);
             $query_actualizar_videojuego->bindParam(":portada",$url_portada);
             $query_actualizar_videojuego->bindParam(":categoria",$id_categoria);
 
-            $ejecucion = $query_actualizar_videojuego>execute();
+            $ejecucion = $query_actualizar_videojuego->execute();
 
             if($ejecucion && $query_actualizar_videojuego->rowCount() != 0){
                 $respuesta = [

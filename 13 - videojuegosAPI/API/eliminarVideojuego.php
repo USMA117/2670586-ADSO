@@ -9,7 +9,7 @@
             $query_actualizar_videojueo->bindParam(':id',$id_videojuego);
             $ejecucion = $query_actualizar_videojueo->execute();
 
-            if($ejecucion && $query_actualizar_videojueo->rowCoutn() != 0){
+            if($ejecucion && $query_actualizar_videojueo->rowCount() != 0){
                 $respuetsa = [
                     "Estado operacion"=> TRUE,
                     'Razon' => "Dato eliminado correctamente"
