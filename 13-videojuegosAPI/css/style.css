@@ -1,0 +1,20 @@
+#catalogo_juegos{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.contenedor_videojuego{
+    margin-top: 20px;
+    text-align: center;
+    width: 250px;
+}
+
+.portada_videojuego{
+    width: 250px;
+    height: 300px;
+}
+.nombre_videojuego{
+    margin-top: 10px;
+    font-size: 19px;
+    font-weight: bold;
+}
