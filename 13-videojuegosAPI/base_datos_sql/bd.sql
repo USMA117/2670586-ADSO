@@ -24,6 +24,12 @@ INSERT INTO categoria (nombre_categoria,descripcion_categoria)VALUES ("Accion","
 INSERT INTO categoria (nombre_categoria,descripcion_categoria)VALUES ("Aventura","Eres un aventurero");
 INSERT INTO categoria (nombre_categoria, descripcion_categoria)VALUES ("Deportes", "Juegos de fútbol, baloncesto y otros deportes.");
 INSERT INTO categoria (nombre_categoria, descripcion_categoria)VALUES ("Estrategia", "Juegos que requieren planificación y habilidades tácticas.");
+INSERT INTO categoria (nombre_categoria, descripcion_categoria) VALUES ("Simulación", "Juegos que simulan actividades de la vida real.");
+INSERT INTO categoria (nombre_categoria, descripcion_categoria) VALUES ("RPG", "Juegos de rol donde desarrollas personajes y sigues una historia.");
+INSERT INTO categoria (nombre_categoria, descripcion_categoria) VALUES ("Puzzle", "Juegos que desafían tu mente con rompecabezas y problemas.");
+INSERT INTO categoria (nombre_categoria, descripcion_categoria) VALUES ("Terror", "Juegos diseñados para asustar y emocionar.");
+INSERT INTO categoria (nombre_categoria, descripcion_categoria) VALUES ("Carreras", "Juegos de alta velocidad y competición en pistas de carreras.");
+INSERT INTO categoria (nombre_categoria, descripcion_categoria) VALUES ("Arcade", "Juegos rápidos y fáciles de jugar, típicos de las máquinas recreativas.");
 
 
 INSERT INTO videojuego (nombre_videojuego, descripcion_videojuego, url_portada, id_categoria) VALUES ("Spiderman", "Prueba de spiderman 1","https://image.api.playstation.com/vulcan/ap/rnd/202009/3021/B2aUYFC0qUAkNnjbTHRyhrg3.png",1);
